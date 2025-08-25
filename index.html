@@ -1,63 +1,107 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.3.3/dist/tailwind.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"/>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@3.3.3/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"
+    />
 
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css" />
     <title>Document</title>
-</head>
-<body>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <header id="site-header">
+      <div class="nav-container">
+        <!-- Logo -->
+        <div class="logo" onclick="scrollToTop()">
+          <img src="/assets//images/Logo.png" alt="Logo" class="logo-img" />
+          <span>Vinelora</span>
+        </div>
 
-    
- <header class="header">
-     <section class="hero-section custom-bg ">
-         <div class="header-content">
-            <h1 class="logo">Vinelora-Art</h1>
-            <p class="tagline">Where Creativity Meets Vision</p>
-        </div>
-        <div class="hero-overlay"></div>
-        <div class="light-beam"></div>
-        
-        <div class="floating-particles">
-            <div class="particle"></div>
-            <div class="particle"></div>
-            <div class="particle"></div>
-            <div class="particle"></div>
-            <div class="particle"></div>
-            <div class="particle"></div>
-        </div>
-     
-    </section>
+        <!-- Links -->
+        <nav>
+          <ul>
+            <li><a href="#portfolio">Portfolio</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </nav>
+
+        <!-- CTA Button -->
+        <button class="cta-btn" onclick="scrollToSection('contact')">
+          Get in Touch
+        </button>
+      </div>
     </header>
-     <!-- <section class="hero-section custom-bg ">
-        <div class="hero-overlay"></div>
-        <div class="light-beam"></div>
-        
-        <div class="floating-particles">
-            <div class="particle"></div>
-            <div class="particle"></div>
-            <div class="particle"></div>
-            <div class="particle"></div>
-            <div class="particle"></div>
-            <div class="particle"></div>
-        </div>
-        <div class="header-content">
-            <h1 class="logo">Vinelora-Art</h1>
-            <p class="tagline">Where Creativity Meets Vision</p>
-        </div>
-    </section> -->
+
+    <!-- Hero setion -->
+    <section class="hero">
+      <img
+        src="https://images.unsplash.com/photo-1615184697985-c9bde1b07da7?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
+        alt="Featured artwork by Vinelora"
+      />
+
+      <div class="hero-content">
+        <h1>
+          <span>Where Art Meets</span>
+          <span>Architecture</span>
+        </h1>
+        <p>
+          Exploring the boundaries between artistic expression and architectural
+          precision through a unique creative vision.
+        </p>
+        <a href="#gallery">
+          Explore Works
+          <!-- أيقونة سهم SVG بدل ArrowDownIcon -->
+          <svg
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M19 9l-7 7-7-7"
+            />
+          </svg>
+        </a>
+      </div>
+    </section>
 
 
-
+       <!-- Footer -->
+        <footer class="site-footer">
+  <div class="footer-container">
+    <div class="footer-left">
+      <a href="#" class="footer-logo">
+        <span class="logo-bold">Vinelora</span> Art
+      </a>
+    </div>
+    <div class="footer-right">
+      <p>&copy; 2025 Vinelora Art. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
 
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
     <script src="script.js"></script>
-</body>
+  </body>
 </html>
