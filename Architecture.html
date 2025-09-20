@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styleArchitecture.css">
+</head>
+<body>
+
+   <div class="container">
+        <div class="header">
+            <h1>THE<br>STORIES</h1>
+            <button class="add-story-btn" onclick="openModal()">ADD NEW STORY</button>
+        </div>
+
+        <div class="stories-grid" id="storiesGrid">
+            <!-- Stories will be dynamically added here -->
+        </div>
+    </div>
+
+    <!-- Modal for adding new story -->
+    <div class="modal" id="storyModal">
+        <div class="modal-content">
+            <h2>Add New Story</h2>
+            <form id="storyForm">
+                <div class="form-group">
+                    <label for="storyTitle">Story Title</label>
+                    <input type="text" id="storyTitle" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="storyDescription">Description</label>
+                    <textarea id="storyDescription" placeholder="Tell us about this story..." required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="storyImage">Story Image</label>
+                    <div class="file-input">
+                        <input type="file" id="storyImage" accept="image/*">
+                        <label for="storyImage" class="file-input-label">
+                            Click to upload image or drag and drop
+                        </label>
+                    </div>
+                    <img id="imagePreview" class="preview-image" style="display: none;">
+                </div>
+
+                <div class="form-buttons">
+                    <button type="submit" class="btn btn-primary">Add Story</button>
+                    <button type="button" class="btn btn-secondary" onclick="closeModal()">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+<script src="scriptArchitecture.js"></script>
+</body>
+</html>

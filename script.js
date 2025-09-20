@@ -80,3 +80,35 @@
                 }
             });
         });
+
+// About
+    fetch("about.html")
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById("about-container").innerHTML = data;
+      });
+        // portfolio
+
+    fetch("portfolio.html")
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById("portfolio-container").innerHTML = data;
+      });
+          const tabs = document.querySelectorAll('.tab-btn');
+  const art = document.getElementById('art');
+  const architecture = document.getElementById('architecture');
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+
+      if(tab.dataset.tab === 'art'){
+        art.style.display = 'grid';
+        architecture.style.display = 'none';
+      } else {
+        art.style.display = 'none';
+        architecture.style.display = 'grid';
+      }
+    });
+  });

@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artistic Portfolio | Distinguished Artist</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --color-white: #f8f8f8;
+            --color-dark-gray: #1f2223;
+            --color-coral: #13543E;
+            --color-beige-gold: #dc143c;
+            --color-light-accent: #2A7F62;
+            --color-dark-accent: #0C3B2E;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--color-white);
+            color: var(--color-dark-gray);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header & Navigation */
+        header {
+            padding: 30px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            background: rgba(248, 248, 248, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(31, 34, 35, 0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--color-coral);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: var(--color-dark-gray);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--color-beige-gold);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--color-beige-gold);
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            padding: 180px 0 100px;
+            text-align: center;
+        }
+
+        .hero-title {
+            font-size: 5rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            color: var(--color-dark-accent);
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            color: var(--color-coral);
+            margin-bottom: 30px;
+        }
+
+        .section-divider {
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--color-coral), var(--color-beige-gold));
+            margin: 0 auto 60px;
+            border-radius: 2px;
+        }
+
+        /* Category Filter */
+        .category-filter {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 60px;
+        }
+
+        .filter-btn {
+            padding: 12px 28px;
+            background: transparent;
+            border: 2px solid var(--color-coral);
+            color: var(--color-coral);
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background: var(--color-coral);
+            color: var(--color-white);
+        }
+
+        /* Portfolio Grid */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin-bottom: 100px;
+        }
+
+        .portfolio-item {
+            position: relative;
+            aspect-ratio: 4/3;
+            border-radius: 10px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            background: var(--color-white);
+        }
+
+        .portfolio-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+        }
+
+        .portfolio-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.4s ease;
+        }
+
+        .portfolio-item:hover .portfolio-img {
+            transform: scale(1.05);
+        }
+
+        .portfolio-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 30px;
+            z-index: 2;
+            background: linear-gradient(transparent, rgba(31, 34, 35, 0.9));
+            color: var(--color-white);
+        }
+
+        .portfolio-category {
+            font-size: 0.9rem;
+            color: var(--color-beige-gold);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 8px;
+        }
+
+        .portfolio-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .portfolio-description {
+            font-size: 1rem;
+            color: rgba(248, 248, 248, 0.9);
+            line-height: 1.5;
+        }
+
+        /* Sections */
+        .paintings-section, .architecture-section {
+            margin-bottom: 80px;
+        }
+
+        .section-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 50px;
+            text-align: center;
+            position: relative;
+            color: var(--color-dark-accent);
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: var(--color-coral);
+            border-radius: 2px;
+        }
+
+        /* Masonry Grid */
+        .masonry-grid {
+            columns: 3;
+            column-gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .masonry-item {
+            break-inside: avoid;
+            margin-bottom: 30px;
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            background: var(--color-white);
+        }
+
+        .masonry-item:hover {
+            transform: scale(1.02);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+        }
+
+        .masonry-img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .masonry-content {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .masonry-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--color-dark-accent);
+            margin-bottom: 8px;
+        }
+
+        .masonry-type {
+            font-size: 0.9rem;
+            color: var(--color-coral);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        /* About Section */
+        .about-section {
+            padding: 100px 0;
+            background: rgba(42, 127, 98, 0.05);
+            margin: 80px 0;
+        }
+
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+        }
+
+        .about-image {
+            flex: 1;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .about-text {
+            flex: 1;
+        }
+
+        .about-text h2 {
+            font-size: 2.8rem;
+            color: var(--color-dark-accent);
+            margin-bottom: 25px;
+        }
+
+        .about-text p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--color-dark-gray);
+            margin-bottom: 20px;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--color-dark-accent);
+            padding: 60px 0 30px;
+            text-align: center;
+            color: var(--color-white);
+        }
+
+        .footer-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .footer-logo {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--color-beige-gold);
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin: 30px 0;
+        }
+
+        .footer-links a {
+            color: var(--color-white);
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--color-beige-gold);
+        }
+
+        .copyright {
+            margin-top: 30px;
+            color: rgba(248, 248, 248, 0.6);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .masonry-grid {
+                columns: 2;
+            }
+            
+            .about-content {
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 3.5rem;
+            }
+            
+            .section-title {
+                font-size: 2.5rem;
+            }
+            
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .masonry-grid {
+                columns: 1;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 2.8rem;
+            }
+            
+            .category-filter {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <h1 class="hero-title">Artistic<br>Excellence</h1>
+            <p class="hero-subtitle">A Portfolio of Distinguished Works</p>
+            <div class="section-divider"></div>
+
+            <!-- Category Filter -->
+            <div class="category-filter">
+                <button class="filter-btn active" data-filter="all">All Works</button>
+                <button class="filter-btn" data-filter="art">Art</button>
+                <button class="filter-btn" data-filter="architecture">Architecture</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Grid -->
+    <section id="portfolio" class="container">
+        <div class="portfolio-grid">
+            <!-- Art Items -->
+            <div class="portfolio-item" data-category="art">
+                <img src="https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?ixlib=rb-4.0.3&auto=format&fit=crop&w=700&q=80" alt="Abstract Art" class="portfolio-img">
+                <div class="portfolio-content">
+                    <div class="portfolio-category">Painting</div>
+                    <h3 class="portfolio-title">Metamorphosis</h3>
+                    <p class="portfolio-description">An exploration of form and color through abstract expressionism, capturing the essence of transformation.</p>
+                </div>
+            </div>
+
+            <div class="portfolio-item" data-category="architecture">
+                <img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?ixlib=rb-4.0.3&auto=format&fit=crop&w=700&q=80" alt="Modern Building" class="portfolio-img">
+                <div class="portfolio-content">
+                    <div class="portfolio-category">Architecture</div>
+                    <h3 class="portfolio-title">Modern Sanctuary</h3>
+                    <p class="portfolio-description">Contemporary residential design blending minimalist aesthetics with sustainable materials.</p>
+                </div>
+            </div>
+
+            <div class="portfolio-item" data-category="art">
+                <img src="https://images.unsplash.com/photo-1541961017774-22349e4a1262?ixlib=rb-4.0.3&auto=format&fit=crop&w=700&q=80" alt="Portrait Art" class="portfolio-img">
+                <div class="portfolio-content">
+                    <div class="portfolio-category">Painting</div>
+                    <h3 class="portfolio-title">Silent Thoughts</h3>
+                    <p class="portfolio-description">A contemplative portrait exploring the interplay between light and shadow in human expression.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about-section">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1545239351-ef35f43d514b?ixlib=rb-4.0.3&auto=format&fit=crop&w=700&q=80" alt="Artist Portrait">
+                </div>
+                <div class="about-text">
+                    <h2>About the Artist</h2>
+                    <p>With over two decades of experience in both visual arts and architectural design, I bridge the gap between form and function, creating works that resonate with emotional depth and technical precision.</p>
+                    <p>My approach combines traditional techniques with innovative perspectives, resulting in a body of work that has been exhibited in galleries and institutions worldwide.</p>
+                    <p>Each piece represents a dialogue between space, material, and concept—a continuous exploration of the boundaries between art and architecture.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Paintings Section -->
+    <section id="paintings" class="paintings-section container">
+        <h2 class="section-title">Paintings</h2>
+        <div class="masonry-grid">
+            <div class="masonry-item">
+                <img src="https://images.unsplash.com/photo-1543857778-c4a1a569eafe?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Urban Dreams" class="masonry-img">
+                <div class="masonry-content">
+                    <h4 class="masonry-title">Urban Dreams</h4>
+                    <p class="masonry-type">Oil on Canvas</p>
+                </div>
+            </div>
+
+            <div class="masonry-item">
+                <img src="https://images.unsplash.com/photo-1515405295579-ba7b45403062?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Nature's Rhythm" class="masonry-img">
+                <div class="masonry-content">
+                    <h4 class="masonry-title">Nature's Rhythm</h4>
+                    <p class="masonry-type">Acrylic</p>
+                </div>
+            </div>
+
+            <div class="masonry-item">
+                <img src="https://images.unsplash.com/photo-1501084817091-a4f3d1d19e07?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Emotional Landscapes" class="masonry-img">
+                <div class="masonry-content">
+                    <h4 class="masonry-title">Emotional Landscapes</h4>
+                    <p class="masonry-type">Mixed Media</p>
+                </div>
+            </div>
+
+            <div class="masonry-item">
+                <img src="https://images.unsplash.com/photo-1513364776144-60967b0f800f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Cosmic Dance" class="masonry-img">
+                <div class="masonry-content">
+                    <h4 class="masonry-title">Cosmic Dance</h4>
+                    <p class="masonry-type">Digital Art</p>
+                </div>
+            </div>
+
+            <div class="masonry-item">
+                <img src="https://images.unsplash.com/photo-1499781350541-7783f6c6a0c8?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Textural Studies" class="masonry-img">
+                <div class="masonry-content">
+                    <h4 class="masonry-title">Textural Studies</h4>
+                    <p class="masonry-type">Oil & Sand</p>
+                </div>
+            </div>
+
+            <div class="masonry-item">
+                <img src="https://images.unsplash.com/photo-1519311726-5cced7383240?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Fluid Motion" class="masonry-img">
+                <div class="masonry-content">
+                    <h4 class="masonry-title">Fluid Motion</h4>
+                    <p class="masonry-type">Watercolor</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Architecture Section -->
+    <section id="architecture" class="architecture-section container">
+        <h2 class="section-title">Architecture</h2>
+        <div class="masonry-grid">
+            <div class="masonry-item">
+                <img src="https://images.unsplash.com/photo-1487958449943-2429e8be8625?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Glass Pavilion" class="masonry-img">
+                <div class="masonry-content">
+                    <h4 class="masonry-title">Glass Pavilion</h4>
+                    <p class="masonry-type">Commercial</p>
+                </div>
+            </div>
+
+            <div class="masonry-item">
+                <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Eco Residence" class="masonry-img">
+                <div class="masonry-content">
+                    <h4 class="masonry-title">Eco Residence</h4>
+                    <p class="masonry-type">Residential</p>
+                </div>
+            </div>
+
+            <div class="masonry-item">
+                <img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Cultural Center" class="masonry-img">
+                <div class="masonry-content">
+                    <h4 class="masonry-title">Cultural Center</h4>
+                    <p class="masonry-type">Public Space</p>
+                </div>
+            </div>
+
+            <div class="masonry-item">
+                <img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Urban Loft" class="masonry-img">
+                <div class="masonry-content">
+                    <h4 class="masonry-title">Urban Loft</h4>
+                    <p class="masonry-type">Interior Design</p>
+                </div>
+            </div>
+
+            <div class="masonry-item">
+                <img src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Meditation Space" class="masonry-img">
+                <div class="masonry-content">
+                    <h4 class="masonry-title">Meditation Space</h4>
+                    <p class="masonry-type">Wellness Center</p>
+                </div>
+            </div>
+
+            <div class="masonry-item">
+                <img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Sky Bridge" class="masonry-img">
+                <div class="masonry-content">
+                    <h4 class="masonry-title">Sky Bridge</h4>
+                    <p class="masonry-type">Infrastructure</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Filter functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const portfolioItems = document.querySelectorAll('.portfolio-item');
+            
+            filterButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // Remove active class from all buttons
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    
+                    // Add active class to clicked button
+                    button.classList.add('active');
+                    
+                    const filterValue = button.getAttribute('data-filter');
+                    
+                    portfolioItems.forEach(item => {
+                        if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
+                            item.style.display = 'block';
+                        } else {
+                            item.style.display = 'none';
+                        }
+                    });
+                });
+            });
+            
+            // Smooth scrolling for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 100,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

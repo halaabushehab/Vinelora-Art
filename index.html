@@ -15,10 +15,16 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"
     />
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"
@@ -29,108 +35,228 @@
   </head>
   <body>
     <!-- Navbar -->
-      <header id="site-header">
-        <div class="nav-container">
-            <!-- Logo -->
-            <div class="logo" onclick="scrollToTop()">
-                <img class="logo-img" src="/assets/images/Logo.png" alt="Vinelora Logo">
-                <span>Vinelora ArtArch</span>
-            </div>
-
-            <!-- Desktop Navigation -->
-            <nav>
-                <ul>
-                    <li><a href="#portfolio"><i class="fas fa-briefcase"></i> Portfolio</a></li>
-                    <li><a href="#about"><i class="fas fa-user"></i> About</a></li>
-                    <li><a href="#contact"><i class="fas fa-envelope"></i> Contact</a></li>
-                </ul>
-            </nav>
-
-            <!-- CTA Button -->
-            <button class="cta-btn" onclick="scrollToSection('contact')">
-                Get in Touch
-            </button>
-
-            <!-- Burger Menu -->
-            <div class="burger-menu" onclick="toggleMobileMenu()">
-                <div class="burger-line"></div>
-                <div class="burger-line"></div>
-                <div class="burger-line"></div>
-            </div>
-
-            <!-- Mobile Menu -->
-            <div class="mobile-menu" id="mobileMenu">
-                <ul>
-                    <li><a href="#portfolio" onclick="closeMobileMenu()"><i class="fas fa-briefcase"></i> Portfolio</a></li>
-                    <li><a href="#about" onclick="closeMobileMenu()"><i class="fas fa-user"></i> About</a></li>
-                    <li><a href="#contact" onclick="closeMobileMenu()"><i class="fas fa-envelope"></i> Contact</a></li>
-                </ul>
-                <div class="mobile-cta">
-                    <button class="cta-btn" onclick="scrollToSection('contact'); closeMobileMenu();">
-                        Get in Touch
-                    </button>
-                </div>
-            </div>
+    <header id="site-header">
+      <div class="nav-container">
+        <!-- Logo -->
+        <div class="logo" onclick="scrollToTop()">
+          <img
+            class="logo-img"
+            src="/assets/images/Logo.png"
+            alt="Vinelora Logo"
+          />
+          <span>Vinelora ArtArch</span>
         </div>
+
+        <!-- Desktop Navigation -->
+        <nav>
+          <ul>
+            <li>
+              <a href="#portfolio"
+                ><i class="fas fa-briefcase"></i> Portfolio</a
+              >
+            </li>
+            <li>
+              <a href="#about"><i class="fas fa-user"></i> About</a>
+            </li>
+            <li>
+              <a href="#contact"><i class="fas fa-envelope"></i> Contact</a>
+            </li>
+          </ul>
+        </nav>
+
+        <!-- CTA Button -->
+        <button class="cta-btn" onclick="scrollToSection('contact')">
+          Get in Touch
+        </button>
+
+        <!-- Burger Menu -->
+        <div class="burger-menu" onclick="toggleMobileMenu()">
+          <div class="burger-line"></div>
+          <div class="burger-line"></div>
+          <div class="burger-line"></div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div class="mobile-menu" id="mobileMenu">
+          <ul>
+            <li>
+              <a href="#portfolio" onclick="closeMobileMenu()"
+                ><i class="fas fa-briefcase"></i> Portfolio</a
+              >
+            </li>
+            <li>
+              <a href="#about" onclick="closeMobileMenu()"
+                ><i class="fas fa-user"></i> About</a
+              >
+            </li>
+            <li>
+              <a href="#contact" onclick="closeMobileMenu()"
+                ><i class="fas fa-envelope"></i> Contact</a
+              >
+            </li>
+          </ul>
+          <div class="mobile-cta">
+            <button
+              class="cta-btn"
+              onclick="scrollToSection('contact'); closeMobileMenu();"
+            >
+              Get in Touch
+            </button>
+          </div>
+        </div>
+      </div>
     </header>
 
-    <!-- Hero setion -->
-<section class="hero" style="background-image: url('/assets/images/background.jpg');">
-    <!-- Floating Rose Petals -->
-    <div class="rose-petal"></div>
-    <div class="rose-petal"></div>
-    <div class="rose-petal"></div>
-    <div class="rose-petal"></div>
-    <div class="rose-petal"></div>
+    <!-- Hero section -->
+<section class="hero" style="background-image: url('/assets/images/Untitled design_page-0001.jpg');">
+        <!-- Floating Elements -->
+        <div class="floating-elements">
+            <div class="floating-element"></div>
+            <div class="floating-element"></div>
+            <div class="floating-element"></div>
+            <div class="floating-element"></div>
+        </div>
 
-    <!-- Course Badge -->
-    <div class="course-badge">Where Art Meets Architecture</div>
+        <!-- Course Badge -->
+        <div class="course-badge"> Contemporary Artist & Architect</div>
 
-    <!-- Art Frame Centered -->
-<div class="art-frame">
-    <div class="frame-container">
-        <div class="golden-frame"></div> <!-- الإطار الذهبي خلفية -->
-        <img src="/assets/images/Baroque style frame.png" alt="Golden Frame"   style="z-index:2" class="painting">
-        <img  src="/assets/images/yf5EhPV3QYjjSGgo5vMqmY.png" alt="Main Artwork"   style="z-index:2" class="painting2 ">
-    </div>
+        <!-- Art Frame Centered -->
+        <div class="art-frame" >
+            <div class="frame-container">
+                <div class="golden-frame"></div>
+                <img
+                    src="/assets/images/Baroque style frame.png?w=400&h=500&fit=crop&crop=center"
+                    alt="Golden Frame"
+                    class="painting"
+                />
+                <img
+                    src="/assets/images/b2fbec40-f420-11ef-9c59-af55ca11ddb0.jpg?w=300&h=400&fit=crop&crop=center"
+                    alt="Main Artwork"
+                    class="painting2"
+                />
+            </div>
+        </div>
+
+        <!-- Hero Title -->
+        <div class="hero-title">
+            <h1>Vinelora</h1>
+            <div class="subtitle">
+                Exploring the boundaries between artistic expression and architectural
+                precision through a unique creative vision.
+            </div>
+        </div>
+    </section>
+
+    <!-- About sections -->
+  <iframe src="about.html" style="width:100%; height:150vh; border:none;"></iframe>
+
+    <!-- portfolio section -->
+  <iframe src="portfolio.html" style="width:100%; height:600vh; border:none;"></iframe>
+
+    
+  <!-- CTA -->
+ <section class="cta">
+        <div class="floating-elements">
+            <div class="floating-element"></div>
+            <div class="floating-element"></div>
+            <div class="floating-element"></div>
+            <div class="floating-element"></div>
+            <div class="floating-element"></div>
+            <div class="floating-element"></div>
+        </div>
+        
+        <div class="architectural-lines"></div>
+        
+        <div class="cta-container">
+            <h1 class="brand-name">VINELORA</h1>
+            <p class="tagline">Exploring the boundaries between artistic expression and architectural precision through a unique creative vision.</p>
+            
+            <h2 class="cta-title">Ready to Transcend Ordinary?</h2>
+            <p class="cta-description">Transform your vision into reality where art meets architecture, where dreams take structural form, and where every line tells a story.</p>
+            
+            <div class="btn-container">
+                <a href="#contact" class="btn btn-primary">Begin Your Journey →</a>
+                <a href="#portfolio" class="btn btn-secondary">Explore Our Vision</a>
+            </div>
+        </div>
+    </section>
+  
+    <!-- Footer - Main Focus -->
+   <footer id="contact">
+        <div class="footer-content">
+            <!-- Quick Links Column -->
+            <div class="footer-column">
+                <h3><i class="fas fa-link"></i>Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="#home"><i class="fas fa-home"></i>Home</a></li>
+                    <li><a href="#gallery"><i class="fas fa-images"></i>Gallery</a></li>
+                    <li><a href="#architecture"><i class="fas fa-building"></i>Architecture</a></li>
+                    <li><a href="#about"><i class="fas fa-user"></i>About Artist</a></li>
+                    <li><a href="#exhibitions"><i class="fas fa-calendar"></i>Exhibitions</a></li>
+                    <li><a href="#press"><i class="fas fa-newspaper"></i>Press & Media</a></li>
+                </ul>
+            </div>
+
+            <!-- Gallery Preview Column -->
+            <div class="footer-column">
+                <h3><i class="fas fa-eye"></i>Gallery Preview</h3>
+                <div class="gallery-thumbnails">
+                    <div class="thumbnail">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <div class="thumbnail">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <div class="thumbnail">
+                        <i class="fas fa-brush"></i>
+                    </div>
+                    <div class="thumbnail">
+                        <i class="fas fa-drafting-compass"></i>
+                    </div>
+                </div>
+                <a href="#gallery" class="view-gallery-btn">View Full Gallery</a>
+            </div>
+
+            <!-- Connect Section -->
+            <div class="footer-column connect">
+                <h3><i class="fas fa-heart"></i>Connect With Me</h3>
+                
+          <div class="social-icons">
+    <a href="#" class="social-icon" title="Instagram">
+        <i class="fab fa-instagram"></i>
+    </a>
+    <a href="#" class="social-icon" title="LinkedIn">
+        <i class="fab fa-linkedin"></i>
+    </a>
+    <a href="mailto:example@email.com" class="social-icon" title="Email">
+        <i class="fas fa-envelope"></i>
+    </a>
 </div>
 
 
-    <!-- Hero Title -->
-    <div class="hero-title" >
-        <h1>Vinelora</h1>
-                <div class="subtitle" >Exploring the boundaries between artistic expression and architectural precision through a unique creative vision.</div>
+                <ul class="footer-links">
+                    <li><a href="mailto:info@vineloraart.com"><i class="fas fa-envelope"></i>info@vineloraart.com</a></li>
+                    <li><a href="tel:+1234567890"><i class="fas fa-phone"></i>+1 (234) 567-890</a></li>
+                    <li><a href="#"><i class="fas fa-map-marker-alt"></i>Art Studio, Creative District</a></li>
+                </ul>
 
-    </div>
+                <!-- <div class="newsletter-signup">
+                    <p>Stay Updated</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Your email address" class="newsletter-input" required>
+                        <button type="submit" class="newsletter-button">Subscribe</button>
+                    </form>
+                </div> -->
+            </div>
+        </div>
 
-    <!-- Decorative Roses -->
-    <div class="decorative-rose top-left">
-        <svg viewBox="0 0 100 100" fill="none">
-            <path d="M50 10 C30 10, 10 30, 10 50 C10 70, 30 90, 50 90 C70 90, 90 70, 90 50 C90 30, 70 10, 50 10" fill="#dc143c" opacity="0.6"/>
-            <path d="M50 20 C35 20, 20 35, 20 50 C20 65, 35 80, 50 80 C65 80, 80 65, 80 50 C80 35, 65 20, 50 20" fill="#8b0000" opacity="0.4"/>
-        </svg>
-    </div>
-    <div class="decorative-rose bottom-right">
-        <svg viewBox="0 0 100 100" fill="none">
-            <path d="M50 10 C30 10, 10 30, 10 50 C10 70, 30 90, 50 90 C70 90, 90 70, 90 50 C90 30, 70 10, 50 10" fill="#dc143c" opacity="0.6"/>
-            <path d="M50 20 C35 20, 20 35, 20 50 C20 65, 35 80, 50 80 C65 80, 80 65, 80 50 C80 35, 65 20, 50 20" fill="#8b0000" opacity="0.4"/>
-        </svg>
-    </div>
-</section>
+        <!-- Footer Bottom -->
+        <div class="footer-bottom">
+            <p>&copy; 2025 Vinelora Art. All rights reserved.</p>
+            <p class="artist-signature">Designed with passion for art and innovation</p>
+        </div>
+    </footer>
 
-       <!-- Footer -->
-        <footer class="site-footer">
-  <div class="footer-container">
-    <div class="footer-left">
-      <a href="#" class="footer-logo">
-        <span class="logo-bold">Vinelora</span> Art
-      </a>
-    </div>
-    <div class="footer-right">
-      <p>&copy; 2025 Vinelora Art. All rights reserved.</p>
-    </div>
-  </div>
-</footer>
 
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
