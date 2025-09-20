@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VINELORA - Artistic Expression & Architectural Precision</title>
+  <style>
+    :root {
+      --color-white: #f8f8f8;
+      --color-dark-gray: #1f2223;
+      --color-coral: #13543E;
+      --color-beige-gold: #dc143c;
+      --color-light-accent: #2A7F62;
+      --color-dark-accent: #0C3B2E;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      color: var(--color-white);
+      line-height: 1.6;
+    }
+
+    /* CTA Section */
+    .cta {
+      position: relative;
+      height: 100vh;
+      background: url("/assets/images/Gemini_Generated_Image_6ht8la6ht8la6ht8 (1).png") no-repeat center center/cover;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    /* Overlay لتوضيح النصوص */
+    .cta::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+    }
+
+    .cta-container {
+      position: relative;
+      z-index: 2;
+      max-width: 900px;
+      padding: 1rem 2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      height: 100%;
+    }
+
+    /* Brand */
+    .brand-name {
+      font-size: 2.8rem;
+      font-weight: 300;
+      letter-spacing: 2px;
+      color: var(--color-white);
+      margin-bottom: 0.8rem;
+      text-shadow: 2px 2px 15px rgba(0,0,0,0.5);
+    }
+
+    .tagline {
+      font-size: 1rem;
+      font-style: italic;
+      color: rgba(248,248,248,0.85);
+      margin-bottom: 1.5rem;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* Titles */
+    .cta-title {
+      font-size: 1.8rem;
+      font-weight: 400;
+      margin-bottom: 1rem;
+      color: var(--color-white);
+    }
+
+    .cta-description {
+      font-size: 1rem;
+      color: rgba(248,248,248,0.9);
+      margin-bottom: 2rem;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* Buttons */
+    .btn-container {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 0.8rem 1.8rem;
+      border-radius: 50px;
+      font-size: 0.95rem;
+      font-weight: 500;
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      transition: all 0.3s ease;
+    }
+
+    .btn-primary {
+      background: var(--color-beige-gold);
+      color: var(--color-white);
+      border: none;
+      box-shadow: 0 6px 15px rgba(220, 20, 60, 0.4);
+    }
+
+    .btn-primary:hover {
+      background: #b01030;
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(220, 20, 60, 0.6);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      border: 2px solid var(--color-white);
+      color: var(--color-white);
+    }
+
+    .btn-secondary:hover {
+      background: var(--color-white);
+      color: var(--color-dark-accent);
+      transform: translateY(-3px);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .brand-name {
+        font-size: 2rem;
+      }
+      .cta-title {
+        font-size: 1.4rem;
+      }
+      .cta-container {
+        padding: 1rem;
+      }
+      .btn-container {
+        flex-direction: column;
+      }
+      .btn {
+        width: 100%;
+        max-width: 220px;
+        margin: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+  <section class="cta" id="cta-section">
+    <div class="cta-container">
+      <h1 class="brand-name">VINELORA</h1>
+      <p class="tagline">Exploring the boundaries between artistic expression and architectural precision through a unique creative vision.</p>
+
+      <h2 class="cta-title">Ready to Transcend Ordinary?</h2>
+      <p class="cta-description">Transform your vision into reality where art meets architecture, where dreams take structural form, and where every line tells a story.</p>
+
+      <div class="btn-container">
+        <a href="#contact" class="btn btn-primary">Begin Your Journey →</a>
+        <a href="#portfolio" class="btn btn-secondary">Explore Our Vision</a>
+      </div>
+    </div>
+  </section>
+</body>
+</html>
