@@ -1,178 +1,197 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>VINELORA - Artistic Expression & Architectural Precision</title>
-  <style>
-    :root {
-      --color-white: #f8f8f8;
-      --color-dark-gray: #1f2223;
-      --color-coral: #13543E;
-      --color-beige-gold: #dc143c;
-      --color-light-accent: #2A7F62;
-      --color-dark-accent: #0C3B2E;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VINELORA - Contact</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Inter:wght@300;400;600&display=swap' );
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
+        :root {
+            --color-white: #f0f0f0;
+            --color-dark: #1a1a1a;
+            --color-accent-red: #e63946;
+            --color-light-accent: #2A7F62;
+        }
 
-    body {
-      color: var(--color-white);
-      line-height: 1.6;
-    }
+        body {
+            background-color: var(--color-dark);
+            font-family: 'Inter', sans-serif;
+            /* لإظهار كامل القسم في العرض */
+            min-height: 100vh;
+            display: grid;
+            place-items: center;
+        }
 
-    /* CTA Section */
-    .cta {
-      position: relative;
-      height: 100vh;
-      background: url("/assets/images/Gemini_Generated_Image_6ht8la6ht8la6ht8 (1).png") no-repeat center center/cover;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-    }
+        .split-image-cta {
+            position: relative;
+            width: 90%;
+            padding: 6rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
 
-    /* Overlay لتوضيح النصوص */
-    .cta::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      z-index: 1;
-    }
+        .cta-content {
+            position: relative;
+            z-index: 10;
+            max-width: 600px;
+            text-align: center;
+            background-color: rgba(26, 26, 26, 0.6);
+            padding: 3rem;
+            border-radius: 4px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(240, 240, 240, 0.1);
+        }
 
-    .cta-container {
-      position: relative;
-      z-index: 2;
-      max-width: 900px;
-      padding: 1rem 2rem;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      height: 100%;
-    }
+        .cta-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            color: var(--color-white);
+            margin-bottom: 1.5rem;
+        }
 
-    /* Brand */
-    .brand-name {
-      font-size: 2.8rem;
-      font-weight: 300;
-      letter-spacing: 2px;
-      color: var(--color-white);
-      margin-bottom: 0.8rem;
-      text-shadow: 2px 2px 15px rgba(0,0,0,0.5);
-    }
+        .cta-description {
+            font-size: 1.1rem;
+            color: rgba(240, 240, 240, 0.8);
+            line-height: 1.7;
+            margin-bottom: 2.5rem;
+        }
 
-    .tagline {
-      font-size: 1rem;
-      font-style: italic;
-      color: rgba(248,248,248,0.85);
-      margin-bottom: 1.5rem;
-      max-width: 600px;
-      margin-left: auto;
-      margin-right: auto;
-    }
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 3rem;
+            background-color: var(--color-accent-red);
+            color: var(--color-white);
+            border: none;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 10px 30px rgba(230, 57, 70, 0.2);
+            transition: all 0.3s ease;
+        }
 
-    /* Titles */
-    .cta-title {
-      font-size: 1.8rem;
-      font-weight: 400;
-      margin-bottom: 1rem;
-      color: var(--color-white);
-    }
+        .cta-button:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 15px 35px rgba(230, 57, 70, 0.3);
+        }
 
-    .cta-description {
-      font-size: 1rem;
-      color: rgba(248,248,248,0.9);
-      margin-bottom: 2rem;
-      max-width: 500px;
-      margin-left: auto;
-      margin-right: auto;
-    }
+        /* حاوية اللوحات المقسمة */
+        .split-image-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1%;
+            perspective: 1500px; /* لتفعيل التأثير ثلاثي الأبعاد */
+        }
 
-    /* Buttons */
-    .btn-container {
-      display: flex;
-      gap: 1rem;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
+        .image-panel {
+            width: 18%; /* عرض كل لوحة */
+            height: 80%;
+            background: url('https://images.unsplash.com/photo-1534430480872-3498386e7856?w=1200&q=80' ) no-repeat;
+            background-size: cover;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+            transition: transform 0.8s cubic-bezier(0.165, 0.84, 0.44, 1),
+                        filter 0.5s ease;
+            filter: brightness(0.6);
+        }
+        
+        .split-image-cta:hover .image-panel {
+            filter: brightness(1);
+        }
 
-    .btn {
-      padding: 0.8rem 1.8rem;
-      border-radius: 50px;
-      font-size: 0.95rem;
-      font-weight: 500;
-      text-decoration: none;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      transition: all 0.3s ease;
-    }
+        /* تحديد موضع الخلفية لكل لوحة لإنشاء الصورة الكاملة */
+        .panel-1 { background-position: 0% 50%; }
+        .panel-2 { background-position: 25% 50%; }
+        .panel-3 { background-position: 50% 50%; }
+        .panel-4 { background-position: 75% 50%; }
+        .panel-5 { background-position: 100% 50%; }
 
-    .btn-primary {
-      background: var(--color-beige-gold);
-      color: var(--color-white);
-      border: none;
-      box-shadow: 0 6px 15px rgba(220, 20, 60, 0.4);
-    }
+        /* تحديد ارتفاعات مختلفة للوحات مثل الصورة التي أرسلتها */
+        .panel-1, .panel-5 { height: 65%; }
+        .panel-2, .panel-4 { height: 75%; }
+        .panel-3 { height: 80%; }
 
-    .btn-primary:hover {
-      background: #b01030;
-      transform: translateY(-3px);
-      box-shadow: 0 10px 20px rgba(220, 20, 60, 0.6);
-    }
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .split-image-container {
+                gap: 0.5%;
+            }
+            .cta-content {
+                padding: 2rem;
+            }
+            .cta-title {
+                font-size: 2.5rem;
+            }
+        }
 
-    .btn-secondary {
-      background: transparent;
-      border: 2px solid var(--color-white);
-      color: var(--color-white);
-    }
-
-    .btn-secondary:hover {
-      background: var(--color-white);
-      color: var(--color-dark-accent);
-      transform: translateY(-3px);
-    }
-
-    /* Responsive */
-    @media (max-width: 768px) {
-      .brand-name {
-        font-size: 2rem;
-      }
-      .cta-title {
-        font-size: 1.4rem;
-      }
-      .cta-container {
-        padding: 1rem;
-      }
-      .btn-container {
-        flex-direction: column;
-      }
-      .btn {
-        width: 100%;
-        max-width: 220px;
-        margin: auto;
-      }
-    }
-  </style>
+        @media (max-width: 768px) {
+            .split-image-cta {
+                padding: 4rem 1rem;
+            }
+            .image-panel {
+                height: 60% !important; /* توحيد الارتفاع على الموبايل */
+            }
+            .cta-content {
+                width: 90%;
+            }
+        }
+    </style>
 </head>
 <body>
-  <section class="cta" id="cta-section">
-    <div class="cta-container">
-      <h1 class="brand-name">VINELORA</h1>
-      <p class="tagline">Exploring the boundaries between artistic expression and architectural precision through a unique creative vision.</p>
 
-      <h2 class="cta-title">Ready to Transcend Ordinary?</h2>
-      <p class="cta-description">Transform your vision into reality where art meets architecture, where dreams take structural form, and where every line tells a story.</p>
+    <section class="split-image-cta" id="contact">
+        <div class="split-image-container">
+            <div class="image-panel panel-1"></div>
+            <div class="image-panel panel-2"></div>
+            <div class="image-panel panel-3"></div>
+            <div class="image-panel panel-4"></div>
+            <div class="image-panel panel-5"></div>
+        </div>
 
-      <div class="btn-container">
-        <a href="#contact" class="btn btn-primary">Begin Your Journey →</a>
-        <a href="#portfolio" class="btn btn-secondary">Explore Our Vision</a>
-      </div>
-    </div>
-  </section>
+        <div class="cta-content">
+            <h2 class="cta-title">Bring Your Vision to Life</h2>
+            <p class="cta-description">
+                Inspired? Let's collaborate. Whether it's a canvas or a blueprint, I'm here to turn your creative concepts into tangible reality.
+            </p>
+            <a href="mailto:your-email@example.com?subject=Project Inquiry" class="cta-button">Start the Conversation</a>
+        </div>
+    </section>
+
+    <script>
+        const panels = document.querySelectorAll('.image-panel');
+        const container = document.querySelector('.split-image-cta');
+
+        container.addEventListener('mousemove', (e) => {
+            const xAxis = (window.innerWidth / 2 - e.clientX) / 25;
+            const yAxis = (window.innerHeight / 2 - e.clientY) / 25;
+
+            panels.forEach((panel, index) => {
+                // كل لوحة تتحرك بشكل مختلف قليلاً لإعطاء عمق
+                const depth = (index - 2) * 5; // اللوحة الوسطى (2) هي نقطة الارتكاز
+                panel.style.transform = `
+                    rotateY(${xAxis}deg) 
+                    rotateX(${-yAxis}deg)
+                    translateZ(${depth}px)
+                `;
+            });
+        });
+
+        // إعادة اللوحات إلى وضعها الطبيعي عند خروج الماوس
+        container.addEventListener('mouseleave', () => {
+            panels.forEach(panel => {
+                panel.style.transform = 'rotateY(0) rotateX(0) translateZ(0)';
+            });
+        });
+    </script>
+
 </body>
 </html>
