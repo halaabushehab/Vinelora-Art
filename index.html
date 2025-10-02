@@ -35,152 +35,385 @@
   </head>
   <body>
     <!-- Navbar -->
-    <header id="site-header">
-      <div class="nav-container">
-        <!-- Logo -->
-        <div class="logo" onclick="scrollToTop()">
-          <img
-            class="logo-img"
-            src="/assets/images/upeCQf0mTnmn12zeUoggLA.png"
-            alt="Vinelora Logo"
-          />
-          <span>Vinelora ArtArch</span>
-        </div>
+<header id="site-header">
+  <div class="nav-container">
+    <!-- Logo -->
+    <div class="logo" onclick="scrollToTop()">
+      <img
+        class="logo-img"
+        src="/images/upeCQf0mTnmn12zeUoggLA.png"
+        alt="Vinelora Logo"
+      />
+      <span>Vinelora ArtArch</span>
+    </div>
 
-        <!-- Desktop Navigation -->
-        <nav>
-          <ul>
-            <li>
-              <a href="#portfolio"
-                ><i class="fas fa-briefcase"></i> Portfolio</a
-              >
-            </li>
-            <li>
-              <a href="/AboutPage.html"><i class="fas fa-user"></i> About</a>
-            </li>
-            <li>
-              <a href="/contact.html"><i class="fas fa-envelope"></i> Contact</a>
-            </li>
-          </ul>
-        </nav>
+    <!-- Desktop Navigation -->
+    <nav>
+      <ul>
+        <li>
+          <a href="#portfolio"><i class="fas fa-briefcase"></i> Portfolio</a>
+        </li>
+        <li>
+          <a href="/AboutPage.html"><i class="fas fa-user"></i> About</a>
+        </li>
+        <li>
+          <a href="/contact.html"><i class="fas fa-envelope"></i> Contact</a>
+        </li>
+      </ul>
+    </nav>
 
-        <!-- CTA Button -->
-        <button class="cta-btn" onclick="scrollToSection('contact')">
+    <!-- CTA Button -->
+    <button class="cta-btn" onclick="scrollToSection('contact')">
+      Get in Touch
+    </button>
+
+    <!-- Burger Menu -->
+    <div class="burger-menu" onclick="toggleMobileMenu()">
+      <div class="burger-line"></div>
+      <div class="burger-line"></div>
+      <div class="burger-line"></div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+      <ul>
+        <li>
+          <a href="#portfolio" onclick="closeMobileMenu()"
+            ><i class="fas fa-briefcase"></i> Portfolio</a
+          >
+        </li>
+        <li>
+          <a href="/AboutPage.html" onclick="closeMobileMenu()"
+            ><i class="fas fa-user"></i> About</a
+          >
+        </li>
+        <li>
+          <a href="/contact.html" onclick="closeMobileMenu()"
+            ><i class="fas fa-envelope"></i> Contact</a
+          >
+        </li>
+      </ul>
+      <div class="mobile-cta">
+        <button
+          class="cta-btn"
+          onclick="scrollToSection('contact'); closeMobileMenu();"
+        >
           Get in Touch
         </button>
-
-        <!-- Burger Menu -->
-        <div class="burger-menu" onclick="toggleMobileMenu()">
-          <div class="burger-line"></div>
-          <div class="burger-line"></div>
-          <div class="burger-line"></div>
-        </div>
-
-        <!-- Mobile Menu -->
-        <div class="mobile-menu" id="mobileMenu">
-          <ul>
-            <li>
-              <a href="#portfolio" onclick="closeMobileMenu()"
-                ><i class="fas fa-briefcase"></i> Portfolio</a
-              >
-            </li>
-            <li>
-              <a href="/AboutPage.html" onclick="closeMobileMenu()"
-                ><i class="fas fa-user"></i> About</a
-              >
-            </li>
-            <li>
-              <a href="/contact.html" onclick="closeMobileMenu()"
-                ><i class="fas fa-envelope"></i> Contact</a
-              >
-            </li>
-          </ul>
-          <div class="mobile-cta">
-            <button
-              class="cta-btn"
-              onclick="scrollToSection('contact'); closeMobileMenu();"
-            >
-              Get in Touch
-            </button>
-          </div>
-        </div>
       </div>
-    </header>
+    </div>
+  </div>
+</header>
+
 
     <!-- Hero section -->
-<section class="hero" style="background-image: url('/assets/images/Untitled design_page-0001.jpg');">
-        <!-- Floating Elements -->
-        <div class="floating-elements">
-            <div class="floating-element"></div>
-            <div class="floating-element"></div>
-            <div class="floating-element"></div>
-            <div class="floating-element"></div>
-        </div>
+    <section class="hero" style="background-image: url('/images/21.png')">
+      <!-- Floating Elements -->
+      <div class="floating-elements">
+        <div class="floating-element"></div>
+        <div class="floating-element"></div>
+        <div class="floating-element"></div>
+        <div class="floating-element"></div>
+      </div>
 
-        <!-- Course Badge -->
-        <div class="course-badge"> Contemporary Artist & Architect</div>
+      <!-- Course Badge -->
+      <div class="course-badge">Contemporary Artist & Architect</div>
 
-        <!-- Art Frame Centered -->
-        <div class="art-frame" >
-            <div class="frame-container">
-                <div class="golden-frame"></div>
-                <img
-                    src="/assets/images/Baroque style frame.png?w=400&h=500&fit=crop&crop=center"
-                    alt="Golden Frame"
-                    class="painting"
-                />
-                <img
-                    src="/assets/images/b2fbec40-f420-11ef-9c59-af55ca11ddb0.jpg?w=300&h=400&fit=crop&crop=center"
-                    alt="Main Artwork"
-                    class="painting2"
-                />
-            </div>
+      <!-- Art Frame Centered -->
+      <div class="art-frame">
+        <div class="frame-container">
+          <div class="golden-frame"></div>
+          <img
+            src="/images/Baroque style frame.png?w=400&h=500&fit=crop&crop=center"
+            alt="Golden Frame"
+            class="painting"
+          />
+          <img
+            src="/images/b2fbec40-f420-11ef-9c59-af55ca11ddb0.jpg?w=300&h=400&fit=crop&crop=center"
+            alt="Main Artwork"
+            class="painting2"
+          />
         </div>
+      </div>
 
-        <!-- Hero Title -->
-        <div class="hero-title">
-            <h1>Vinelora</h1>
-            <div class="subtitle">
-                Exploring the boundaries between artistic expression and architectural
-                precision through a unique creative vision.
-            </div>
+      <!-- Hero Title -->
+      <div class="hero-title">
+        <h1>Vinelora</h1>
+        <div class="subtitle">
+          Art meets architecture through a unique vision.
         </div>
+      </div>
     </section>
 
     <!-- About sections -->
-  <iframe src="about.html" style="width:100%; height:150vh; border:none;"></iframe>
+    <iframe
+      src="about.html"
+      style="width: 100%; height: 150vh; border: none"
+      scrolling="no"
+    ></iframe>
 
     <!-- portfolio section -->
-  <iframe src="portfolio.html" style="width:100%; height:480vh; border:none;"></iframe>
+    <section>
+      <section class="hero-section">
+        <div class="container">
+          <h1 class="hero-title">Artistic Excellence</h1>
+          <p class="hero-subtitle">A Portfolio of Distinguished Works</p>
+          <div class="section-divider"></div>
 
-    
-  <!-- CTA -->
-  <iframe src="cta.html" style="width:100%; height:85vh; border:none;"></iframe>
+          <div class="category-filter">
+            <button class="filter-btn active" data-filter="all">
+              All Works
+            </button>
+            <button class="filter-btn" data-filter="art">Art</button>
+            <button class="filter-btn" data-filter="architecture">
+              Architecture
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Portfolio Grid -->
+      <section id="portfolio" class="container">
+        <div class="portfolio-grid">
+          <!-- Art Items -->
+          <div class="portfolio-item" data-category="art">
+            <img
+              src="/images/painting/IMG_٢٠٢٢٠٤٠١_١٨٢٢٢٧.jpg"
+              alt="Abstract Art"
+              class="portfolio-img"
+            />
+            <div class="portfolio-content">
+              <div class="portfolio-category">Painting</div>
+              <h3 class="portfolio-title">Metamorphosis</h3>
+              <p class="portfolio-description">
+                An exploration of form and color through abstract expressionism.
+              </p>
+            </div>
+          </div>
+
+          <div class="portfolio-item" data-category="architecture">
+            <img
+              src="/images//painting//IMG_20210705_013651_158.jpg"
+              alt="Modern Building"
+              class="portfolio-img"
+            />
+            <div class="portfolio-content">
+              <div class="portfolio-category">Architecture</div>
+              <h3 class="portfolio-title">Modern Sanctuary</h3>
+              <p class="portfolio-description">
+                Contemporary residential design blending minimalist aesthetics.
+              </p>
+            </div>
+          </div>
+
+          <div class="portfolio-item" data-category="art">
+            <img
+              src="/images/painting/IMG_20210726_170637_442~2.jpg"
+              alt="Portrait Art"
+              class="portfolio-img"
+            />
+            <div class="portfolio-content">
+              <div class="portfolio-category">Painting</div>
+              <h3 class="portfolio-title">Silent Thoughts</h3>
+              <p class="portfolio-description">
+                A contemplative portrait exploring light and shadow.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Paintings Section -->
+      <section id="paintings" class="paintings-section container">
+        <h2 class="section-title">Paintings</h2>
+        <div class="masonry-grid">
+          <div class="masonry-item">
+            <img
+              src="https://images.unsplash.com/photo-1543857778-c4a1a569eafe?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+              alt="Urban Dreams"
+              class="masonry-img"
+            />
+            <div class="masonry-content">
+              <h4 class="masonry-title">Urban Dreams</h4>
+              <p class="masonry-type">Oil on Canvas</p>
+            </div>
+          </div>
+
+          <div class="masonry-item">
+            <img
+              src="https://images.unsplash.com/photo-1515405295579-ba7b45403062?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+              alt="Nature's Rhythm"
+              class="masonry-img"
+            />
+            <div class="masonry-content">
+              <h4 class="masonry-title">Nature's Rhythm</h4>
+              <p class="masonry-type">Acrylic</p>
+            </div>
+          </div>
+
+          <div class="masonry-item">
+            <img
+              src="https://images.unsplash.com/photo-1501084817091-a4f3d1d19e07?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+              alt="Emotional Landscapes"
+              class="masonry-img"
+            />
+            <div class="masonry-content">
+              <h4 class="masonry-title">Emotional Landscapes</h4>
+              <p class="masonry-type">Mixed Media</p>
+            </div>
+          </div>
+
+          <div class="masonry-item">
+            <img
+              src="https://images.unsplash.com/photo-1513364776144-60967b0f800f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+              alt="Cosmic Dance"
+              class="masonry-img"
+            />
+            <div class="masonry-content">
+              <h4 class="masonry-title">Cosmic Dance</h4>
+              <p class="masonry-type">Digital Art</p>
+            </div>
+          </div>
+
+          <div class="masonry-item">
+            <img
+              src="https://images.unsplash.com/photo-1499781350541-7783f6c6a0c8?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+              alt="Textural Studies"
+              class="masonry-img"
+            />
+            <div class="masonry-content">
+              <h4 class="masonry-title">Textural Studies</h4>
+              <p class="masonry-type">Oil & Sand</p>
+            </div>
+          </div>
+
+          <div class="masonry-item">
+            <img
+              src="https://images.unsplash.com/photo-1519311726-5cced7383240?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+              alt="Fluid Motion"
+              class="masonry-img"
+            />
+            <div class="masonry-content">
+              <h4 class="masonry-title">Fluid Motion</h4>
+              <p class="masonry-type">Watercolor</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Architecture Section -->
+      <section id="architecture" class="architecture-section container">
+        <h2 class="section-title">Architecture</h2>
+        <div class="masonry-grid">
+          <div class="masonry-item">
+            <img
+              src="https://images.unsplash.com/photo-1487958449943-2429e8be8625?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+              alt="Glass Pavilion"
+              class="masonry-img"
+            />
+            <div class="masonry-content">
+              <h4 class="masonry-title">Glass Pavilion</h4>
+              <p class="masonry-type">Commercial</p>
+            </div>
+          </div>
+
+          <div class="masonry-item">
+            <img
+              src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+              alt="Eco Residence"
+              class="masonry-img"
+            />
+            <div class="masonry-content">
+              <h4 class="masonry-title">Eco Residence</h4>
+              <p class="masonry-type">Residential</p>
+            </div>
+          </div>
+
+          <div class="masonry-item">
+            <img
+              src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+              alt="Cultural Center"
+              class="masonry-img"
+            />
+            <div class="masonry-content">
+              <h4 class="masonry-title">Cultural Center</h4>
+              <p class="masonry-type">Public Space</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <!-- CTA -->
+    <iframe
+      src="cta.html"
+      style="width: 100%; height: 85vh; border: none"
+      scrolling="no"
+    ></iframe>
 
     <!-- Footer -->
     <footer id="contact">
-        <div class="container">
-            <div class="footer-content">
-                <a href="#" class="footer-logo">ArtVision</a>
-                <p>Creative portfolio showcasing the intersection of art and architecture through innovative design and expression.</p>
-                
-              <div class="footer-links">
-    <a href="#"><i class="fab fa-instagram"></i></a>
-    <a href="#"><i class="fab fa-facebook"></i></a>
-    <a href="#"><i class="fab fa-linkedin"></i></a>
-</div>
+      <div class="container">
+        <div class="footer-content">
+          <a href="#" class="footer-logo">ArtVision</a>
+          <p>
+            Creative portfolio showcasing the intersection of art and
+            architecture through innovative design and expression.
+          </p>
 
-                
-                <p class="copyright">© 2025 ArtVision Portfolio. All rights reserved.</p>
-            </div>
+          <div class="footer-links">
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-linkedin"></i></a>
+          </div>
+
+          <p class="copyright">
+            © 2025 ArtVision Portfolio. All rights reserved.
+          </p>
         </div>
+      </div>
     </footer>
-
-
 
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
     <script src="script.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Filter functionality
+        const filterButtons = document.querySelectorAll(".filter-btn");
+        const portfolioItems = document.querySelectorAll(".portfolio-item");
+
+        filterButtons.forEach((button) => {
+          button.addEventListener("click", () => {
+            filterButtons.forEach((btn) => btn.classList.remove("active"));
+            button.classList.add("active");
+
+            const filterValue = button.getAttribute("data-filter");
+
+            portfolioItems.forEach((item) => {
+              item.style.display = "block"; // Reset display property
+              const itemCategory = item.getAttribute("data-category");
+
+              if (filterValue !== "all" && itemCategory !== filterValue) {
+                item.style.display = "none";
+              }
+            });
+          });
+        });
+
+        // Card click redirect
+        portfolioItems.forEach((item) => {
+          item.addEventListener("click", () => {
+            const category = item.getAttribute("data-category");
+            if (category === "art") {
+              window.location.href = "/paintings.html"; // يوديك على قسم الرسوم
+            } else if (category === "architecture") {
+              window.location.href = "/architecture1.html"; // يوديك على قسم العمارة
+            }
+          });
+        });
+      });
+    </script>
   </body>
 </html>

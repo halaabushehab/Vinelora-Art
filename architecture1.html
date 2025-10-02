@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Architectural Works | Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --color-white: #f8f8f8;
+            --color-dark-gray: #1f2223;
+            --color-coral: #13543E; /* Main Green */
+            --color-beige-gold: #dc143c; /* Hover Red - kept as per original */
+            --color-light-accent: #2A7F62;
+            --color-dark-accent: #0C3B2E; /* Darkest Green */
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Garamond', 'Times New Roman', serif; /* More elegant font */
+        }
+
+        body {
+            background-color: var(--color-white );
+            color: var(--color-dark-gray);
+            display: flex;
+            height: 100vh;
+            overflow: hidden; /* Prevent body scroll, allow main content to scroll */
+        }
+
+        /* --- Sidebar --- */
+        .sidebar {
+            width: 380px;
+            height: 100%;
+            background-color: var(--color-white);
+            border-right: 1px solid rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            z-index: 10;
+        }
+
+        .sidebar-header .logo {
+            font-size: 2rem;
+            font-weight: 600;
+            color: var(--color-coral);
+            text-decoration: none;
+            letter-spacing: 1px;
+        }
+
+        .sidebar-header .tagline {
+            font-size: 1rem;
+            color: var(--color-dark-gray);
+            margin-top: 10px;
+            line-height: 1.5;
+        }
+
+        .project-info {
+            transition: opacity 0.4s ease;
+        }
+
+        .project-info .project-title {
+            font-size: 2.5rem;
+            font-weight: 500;
+            color: var(--color-dark-accent);
+            margin-bottom: 10px;
+            line-height: 1.2;
+        }
+
+        .project-info .project-category {
+            font-size: 1rem;
+            color: var(--color-coral);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .project-info .project-description {
+            font-size: 1rem;
+            color: #555;
+            line-height: 1.7;
+        }
+
+        .sidebar-footer .nav-link a {
+            color: var(--color-dark-gray);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .sidebar-footer .nav-link a:hover {
+            color: var(--color-beige-gold);
+        }
+
+        /* --- Main Content --- */
+        .main-content {
+            flex-grow: 1;
+            height: 100vh;
+            overflow-y: auto; /* Allow this section to scroll */
+            padding: 40px;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            border-radius: 4px;
+            aspect-ratio: 3 / 4; /* Maintain a consistent aspect ratio */
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.3s;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+        
+        .gallery-item .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, rgba(12, 59, 46, 0.7) 0%, rgba(0,0,0,0) 50%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            display: flex;
+            align-items: flex-end;
+            padding: 20px;
+        }
+        
+        .gallery-item:hover .overlay {
+            opacity: 1;
+        }
+
+        .overlay-title {
+            color: var(--color-white);
+            font-size: 1.4rem;
+            font-weight: 500;
+            transform: translateY(20px);
+            opacity: 0;
+            transition: transform 0.4s ease 0.1s, opacity 0.4s ease 0.1s;
+        }
+
+        .gallery-item:hover .overlay-title {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .sidebar {
+                width: 320px;
+                padding: 30px;
+            }
+            .project-info .project-title {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 992px) {
+            body {
+                flex-direction: column;
+                height: auto;
+                overflow: auto;
+            }
+            .sidebar {
+                width: 100%;
+                height: auto;
+                border-right: none;
+                border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+                text-align: center;
+            }
+            .project-info {
+                display: none; /* Hide sidebar project info on mobile */
+            }
+            .sidebar-footer {
+                display: none; /* Hide back button on mobile, can be moved to a top nav */
+            }
+            .main-content {
+                height: auto;
+                padding: 30px 20px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .gallery-grid {
+                grid-template-columns: 1fr; /* Single column on mobile */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Sidebar for Branding and Project Details -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <a href="#" class="logo">ARCH-ART</a>
+            <p class="tagline">Crafting spaces that inspire. Hover over a project to see details.</p>
+        </div>
+
+        <div id="project-details" class="project-info">
+            <!-- Project details will be dynamically inserted here by JavaScript -->
+            <h2 id="project-title" class="project-title">Modern Sanctuary</h2>
+            <p id="project-category" class="project-category">Residential</p>
+            <p id="project-description" class="project-description">A fusion of minimalist design and natural materials, creating a tranquil living space that connects with its surroundings.</p>
+        </div>
+
+        <div class="sidebar-footer">
+            <div class="nav-link">
+                <a href="index.html"><i class="fas fa-arrow-left"></i> Back to Home</a>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Content with Image Gallery -->
+    <main class="main-content">
+        <div class="gallery-grid">
+            <!-- Project 1 -->
+            <div class="gallery-item" 
+                 data-title="Modern Sanctuary" 
+                 data-category="Residential" 
+                 data-description="A fusion of minimalist design and natural materials, creating a tranquil living space that connects with its surroundings.">
+                <img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?ixlib=rb-4.0.3&auto=format&fit=crop&w=700&q=80" alt="Modern Sanctuary">
+                <div class="overlay"><h3 class="overlay-title">Modern Sanctuary</h3></div>
+            </div>
+            <!-- Project 2 -->
+            <div class="gallery-item" 
+                 data-title="Glass Pavilion" 
+                 data-category="Commercial" 
+                 data-description="An iconic commercial space defined by its structural glass walls, blurring the line between interior and exterior.">
+                <img src="https://images.unsplash.com/photo-1487958449943-2429e8be8625?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Glass Pavilion">
+                <div class="overlay"><h3 class="overlay-title">Glass Pavilion</h3></div>
+            </div>
+            <!-- Project 3 -->
+            <div class="gallery-item" 
+                 data-title="Eco Residence" 
+                 data-category="Residential" 
+                 data-description="A sustainable home designed with green roofs, solar power, and recycled materials to minimize environmental impact.">
+                <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Eco Residence">
+                <div class="overlay"><h3 class="overlay-title">Eco Residence</h3></div>
+            </div>
+            <!-- Project 4 -->
+            <div class="gallery-item" 
+                 data-title="Coastal Villa" 
+                 data-category="Residential" 
+                 data-description="This villa offers panoramic ocean views through expansive windows and open-plan living areas, perfect for a seaside escape.">
+                <img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Coastal Villa">
+                <div class="overlay"><h3 class="overlay-title">Coastal Villa</h3></div>
+            </div>
+            <!-- Project 5 -->
+            <div class="gallery-item" 
+                 data-title="Urban Tower" 
+                 data-category="Public Space" 
+                 data-description="A landmark skyscraper that redefines the city skyline with its innovative facade and mixed-use functionality.">
+                <img src="https://images.unsplash.com/photo-1511316672522-c0f091708229?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Urban Tower">
+                <div class="overlay"><h3 class="overlay-title">Urban Tower</h3></div>
+            </div>
+            <!-- Project 6 -->
+            <div class="gallery-item" 
+                 data-title="Forest Retreat" 
+                 data-category="Residential" 
+                 data-description="A secluded cabin built with locally sourced timber, designed to be a peaceful retreat immersed in nature.">
+                <img src="https://images.unsplash.com/photo-1499696010180-025ef6e1a8f9?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Forest Retreat">
+                <div class="overlay"><h3 class="overlay-title">Forest Retreat</h3></div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function( ) {
+            const galleryItems = document.querySelectorAll('.gallery-item');
+            const projectTitleEl = document.getElementById('project-title');
+            const projectCategoryEl = document.getElementById('project-category');
+            const projectDescriptionEl = document.getElementById('project-description');
+            const projectDetailsContainer = document.getElementById('project-details');
+
+            galleryItems.forEach(item => {
+                item.addEventListener('mouseenter', () => {
+                    // Get data from the hovered item
+                    const title = item.getAttribute('data-title');
+                    const category = item.getAttribute('data-category');
+                    const description = item.getAttribute('data-description');
+
+                    // Fade out old text
+                    projectDetailsContainer.style.opacity = 0;
+
+                    // After fade out, update text and fade in
+                    setTimeout(() => {
+                        projectTitleEl.textContent = title;
+                        projectCategoryEl.textContent = category;
+                        projectDescriptionEl.textContent = description;
+                        projectDetailsContainer.style.opacity = 1;
+                    }, 300); // This duration should match the CSS transition
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>

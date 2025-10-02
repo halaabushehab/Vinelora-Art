@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Art Gallery | Distinguished Artist</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --color-white: #f8f8f8;
+            --color-dark-gray: #1f2223;
+            --color-coral: #13543E;
+            --color-beige-gold: #dc143c;
+            --color-light-accent: #2A7F62;
+            --color-dark-accent: #0C3B2E;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            background: linear-gradient(135deg, var(--color-white ) 0%, #ede7d9 100%);
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* --- Sidebar --- */
+        .sidebar {
+            width: 380px;
+            height: 100%;
+            background-color: var(--color-white);
+            border-right: 1px solid rgba(19, 84, 62, 0.2);
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            z-index: 10;
+            flex-shrink: 0;
+        }
+
+        .sidebar-header .logo {
+            font-size: 2.2rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--color-coral), var(--color-light-accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-decoration: none;
+            letter-spacing: 2px;
+        }
+
+        .sidebar-header .tagline {
+            font-size: 1rem;
+            color: var(--color-dark-gray);
+            margin-top: 10px;
+            line-height: 1.5;
+        }
+
+        .artwork-info {
+            transition: opacity 0.4s ease;
+        }
+
+        .artwork-info .info-title {
+            font-size: 2.5rem;
+            font-weight: 500;
+            color: var(--color-dark-accent);
+            margin-bottom: 10px;
+            line-height: 1.2;
+            font-style: italic;
+        }
+
+        .artwork-info .info-category {
+            font-size: 1rem;
+            color: var(--color-coral);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .artwork-info .info-description {
+            font-size: 1rem;
+            color: #555;
+            line-height: 1.7;
+        }
+
+        .sidebar-footer .nav-link a {
+            color: var(--color-dark-gray);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: all 0.4s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 30px;
+            border: 2px solid var(--color-coral);
+            border-radius: 50px;
+        }
+
+        .sidebar-footer .nav-link a:hover {
+            color: white;
+            background-color: var(--color-coral);
+        }
+
+        /* --- Main Content (Gallery) --- */
+        .main-content {
+            flex-grow: 1;
+            height: 100vh;
+            overflow-y: auto;
+            padding: 40px;
+        }
+
+        .gallery-wall {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 60px;
+            justify-items: center;
+        }
+
+        /* --- Baroque Frame Style (Unchanged as requested) --- */
+        .painting-frame {
+            position: relative;
+            width: 350px;
+            height: 450px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .frame-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .artwork-container {
+            position: absolute;
+            top: 15%;
+            left: 18%;
+            width: 63%;
+            height: 72%;
+            background: var(--color-white);
+            overflow: hidden;
+            z-index: 2;
+            box-shadow: 0 8px 15px rgba(0,0,0,0.3);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+        }
+
+        .artwork-image {
+            width: 100%;
+            height: 75%;
+            object-fit: cover;
+        }
+
+        .gallery-label {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: var(--color-white);
+            font-size: 0.7rem;
+            padding: 5px;
+            flex-grow: 1;
+        }
+
+        .artwork-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: var(--color-dark-gray);
+            margin-bottom: 2px;
+            font-family: 'Georgia', serif;
+            font-style: italic;
+        }
+
+        .artwork-details {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+        }
+
+        .artwork-medium {
+            font-size: 0.95rem;
+            color: var(--color-coral);
+            font-family: 'Georgia', serif;
+            text-align: center;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .sidebar {
+                width: 320px;
+                padding: 30px;
+            }
+            .artwork-info .info-title {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 992px) {
+            body {
+                flex-direction: column;
+                height: auto;
+                overflow: auto;
+            }
+            .sidebar {
+                width: 100%;
+                height: auto;
+                border-right: none;
+                border-bottom: 1px solid rgba(19, 84, 62, 0.2);
+                text-align: center;
+            }
+            .artwork-info {
+                display: none; /* Hide sidebar project info on mobile for simplicity */
+            }
+            .main-content {
+                height: auto;
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Sidebar for Branding and Artwork Details -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <a href="#" class="logo">ARTISTRY</a>
+            <p class="tagline">Hover over an artwork to discover its story.</p>
+        </div>
+
+        <div id="artwork-details-panel" class="artwork-info">
+            <!-- Artwork details will be dynamically inserted here -->
+            <h2 id="info-title" class="info-title">Sufi's Dance</h2>
+            <p id="info-category" class="info-category">Spiritual Art, Mixed Media</p>
+            <p id="info-description" class="info-description">A piece that captures the transcendent movement and spiritual ecstasy of the whirling dervishes, rendered in a dynamic mixed media format.</p>
+        </div>
+
+        <div class="sidebar-footer">
+            <div class="nav-link">
+                <a href="index.html"><i class="fas fa-arrow-left"></i> Back to Home</a>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Content with Art Gallery -->
+    <main class="main-content">
+        <div class="gallery-wall" id="gallery-wall">
+            <!-- Paintings will be dynamically inserted here by JavaScript -->
+        </div>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const paintingsData = [
+                {
+                    title: "Sufi's Dance",
+                    medium: "Spiritual Art, Mixed Media",
+                    description: "A piece that captures the transcendent movement and spiritual ecstasy of the whirling dervishes, rendered in a dynamic mixed media format.",
+                    imageUrl: "/images/painting/b2fbec40-f420-11ef-9c59-af55ca11ddb0.jpg"
+                },
+                {
+                    title: "Desert Stallion",
+                    medium: "Equine Art, Oil on Canvas",
+                    description: "This powerful oil painting portrays the untamed spirit and elegance of an Arabian stallion against a stark desert landscape.",
+                    imageUrl: "/images/painting/e4ad05d0-f420-11ef-9c59-af55ca11ddb0.jpg"
+                },
+                {
+                    title: "Homeland Calligraphy",
+                    medium: "Palestinian Art, Mixed Media",
+                    description: "A fusion of traditional calligraphy and modern art techniques, this piece is a visual ode to Palestinian heritage and identity.",
+                    imageUrl: "/images/painting/f90ee5b0-fb07-11ee-b068-1d48b4a6a671.jpg"
+                },
+                {
+                    title: "Bedouin Gaze",
+                    medium: "Portrait, Mosaic Style",
+                    description: "Through a unique mosaic style, this portrait captures the profound wisdom and resilience reflected in the eyes of a Bedouin elder.",
+                    imageUrl: "/images/painting/IMG_20210705_013651_158.jpg"
+                },
+                {
+                    title: "Lakeside Serenity",
+                    medium: "Landscape, Acrylic on Board",
+                    description: "An impressionistic landscape that invites the viewer into a moment of peace and tranquility by a calm lakeside at dusk.",
+                    imageUrl: "/images/painting/IMG_20210726_170637_442~2.jpg"
+                },
+                {
+                    title: "The Violinist Soul",
+                    medium: "Figurative Art, Digital Mosaic",
+                    description: "This digital mosaic piece visualizes the music flowing from a violinist, where every tile represents a note in a symphony of color.",
+                    imageUrl: "/images/painting/IMG_20210912_130546_944.jpg"
+                },
+                {
+                    title: "Autumn Portrait",
+                    medium: "Contemporary Portrait, Oil",
+                    description: "A contemporary oil portrait that uses the warm, rich palette of autumn to convey a sense of introspection and change.",
+                    imageUrl: "/images/painting/IMG_20231031_153502.jpg"
+                },
+                {
+                    title: "Golden Dome",
+                    medium: "Architectural Art, Mosaic",
+                    description: "An intricate mosaic celebrating the architectural splendor and spiritual significance of the Dome of the Rock.",
+                    imageUrl: "/images/painting/IMG_20240101_155901.jpg"
+                }
+            ];
+
+            const galleryWall = document.getElementById('gallery-wall');
+            const infoTitleEl = document.getElementById('info-title');
+            const infoCategoryEl = document.getElementById('info-category');
+            const infoDescriptionEl = document.getElementById('info-description');
+            const artworkDetailsPanel = document.getElementById('artwork-details-panel');
+
+            // Function to render all paintings
+            function renderPaintings() {
+                if (!galleryWall) return;
+                galleryWall.innerHTML = '';
+
+                paintingsData.forEach(painting => {
+                    const paintingHTML = `
+                        <div class="painting-frame" 
+                             data-title="${painting.title}" 
+                             data-medium="${painting.medium}" 
+                             data-description="${painting.description}">
+                            <img src="/images/Baroque style frame.png" alt="Frame" class="frame-image">
+                            <div class="artwork-container">
+                                <img src="${painting.imageUrl}" alt="${painting.title}" class="artwork-image">
+                                <div class="gallery-label">
+                                    <h4 class="artwork-title">"${painting.title}"</h4>
+                                    <div class="artwork-details">
+                                        <span class="artwork-medium">${painting.medium}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    galleryWall.innerHTML += paintingHTML;
+                });
+            }
+
+            // Function to handle interactions
+            function addGalleryInteractions() {
+                document.querySelectorAll('.painting-frame').forEach(frame => {
+                    frame.addEventListener('mouseenter', () => {
+                        const title = frame.getAttribute('data-title');
+                        const medium = frame.getAttribute('data-medium');
+                        const description = frame.getAttribute('data-description');
+
+                        artworkDetailsPanel.style.opacity = 0;
+
+                        setTimeout(() => {
+                            infoTitleEl.textContent = title;
+                            infoCategoryEl.textContent = medium;
+                            infoDescriptionEl.textContent = description;
+                            artworkDetailsPanel.style.opacity = 1;
+                        }, 300);
+                    });
+                });
+            }
+
+            // Initial setup
+            renderPaintings();
+            addGalleryInteractions();
+        });
+    </script>
+
+</body>
+</html>
