@@ -951,24 +951,112 @@ nav ul li a:hover i {
 }
 
         /* --- Responsive Design --- */
-        @media (max-width: 1024px) {
-            .hero-title { font-size: 3.5rem; }
-            .hero-subtitle { font-size: 1.2rem; }
-            .section-title { font-size: 2.5rem; }
-            .masonry-grid { columns: 2; column-gap: 20px; }
-            .masonry-item { margin-bottom: 20px; }
-        }
+/* --- Responsive Design Enhancements with Padding --- */
 
-        @media (max-width: 768px) {
-            .hero-section { padding: 60px 0; }
-            .hero-title { font-size: 2.8rem; }
-            .hero-subtitle { font-size: 1.1rem; }
-            .section-title { font-size: 2rem; }
-            .portfolio-grid { grid-template-columns: 1fr; gap: 25px; }
-            .portfolio-title { font-size: 1.4rem; }
-            .portfolio-description { font-size: 0.9rem; }
-            .masonry-grid { columns: 1; }
-        }
+/* Medium devices (tablets) */
+@media (max-width: 1024px) {
+    .container {
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+    }
+    .hero-title {
+        font-size: 3.5rem;
+    }
+    .hero-subtitle {
+        font-size: 1.2rem;
+    }
+    .section-title {
+        font-size: 2.5rem;
+    }
+    .masonry-grid {
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: center;
+    }
+    .masonry-item {
+        width: 48%;
+        margin-bottom: 20px;
+    }
+}
+
+/* Small devices (large mobiles) */
+@media (max-width: 768px) {
+    .container {
+        padding-left: 1.2rem;
+        padding-right: 1.2rem;
+    }
+    .hero-section {
+        padding: 60px 1.5rem;
+    }
+    .hero-title {
+        font-size: 2.8rem;
+        line-height: 1.2;
+    }
+    .hero-subtitle {
+        font-size: 1.1rem;
+    }
+    .section-title {
+        font-size: 2rem;
+    }
+    .portfolio-grid {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+    .portfolio-title {
+        font-size: 1.4rem;
+    }
+    .portfolio-description {
+        font-size: 0.9rem;
+    }
+    .category-filter {
+        gap: 10px;
+        justify-content: center;
+    }
+    .filter-btn {
+        padding: 8px 18px;
+        font-size: 0.85rem;
+    }
+    .masonry-grid {
+        flex-direction: column;
+        gap: 20px;
+    }
+    .masonry-item {
+        width: 100%;
+    }
+    .masonry-img {
+        height: auto;
+    }
+}
+
+/* Extra small devices (mobiles) */
+@media (max-width: 480px) {
+    .container {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+    .hero-title {
+        font-size: 2.2rem;
+    }
+    .hero-subtitle {
+        font-size: 1rem;
+    }
+    .section-title {
+        font-size: 1.6rem;
+    }
+    .portfolio-description {
+        font-size: 0.85rem;
+    }
+    .masonry-title {
+        font-size: 1rem;
+    }
+    .masonry-type {
+        font-size: 0.9rem;
+    }
+    .portfolio-grid, .masonry-grid {
+        gap: 15px;
+    }
+}
+
         /* ========================================================= */
 /* Footer */
 footer {
@@ -1058,8 +1146,6 @@ footer {
 
 
 /* About sECTION */
-    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;600&family=Kalam:wght@400&display=swap' );
-
         .art-showcase-section {
             /* Define colors here to be scoped to this component */
             --showcase-white: #f8f8f8;
@@ -1069,7 +1155,6 @@ footer {
             --showcase-dark-accent: #0C3B2E;
             --showcase-frame-bg: #eaf0ee; /* A very light green/gray for the frame */
 
-            font-family: 'Inter', sans-serif;
             background-color: #fff;
             color: var(--showcase-dark-gray);
             display: flex;
@@ -1098,9 +1183,8 @@ footer {
         }
 
         .art-showcase-subheading {
-            font-family: 'Kalam', cursive;
             font-size: 1.8rem;
-            color: var(--showcase-dark-gray);
+            color: var(--showcase-primary-green);
             margin-bottom: -0.5rem;
         }
 
@@ -1235,7 +1319,7 @@ footer {
 /* Cta================================================= */
  .split-image-cta {
             position: relative;
-            width: 90%;
+            width: 100%;
             padding: 6rem 2rem;
             display: flex;
             align-items: center;

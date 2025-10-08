@@ -231,7 +231,25 @@
                 height: auto;
                 padding: 30px 20px;
             }
-        }
+        }/* Responsive Fix for Mobile */
+@media (max-width: 768px) {
+    .main-content {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+    .gallery-wall {
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* يضمن التمركز */
+        gap: 20px;
+    }
+    .painting-frame {
+        width: 100%;       /* عرض كامل مع المارجن الداخلي */
+        max-width: 350px;  /* أقصى عرض مناسب */
+        margin: 0 auto;    /* مركز الكارد */
+    }
+}
+
     </style>
 </head>
 <body>
