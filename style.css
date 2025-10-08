@@ -750,13 +750,12 @@ nav ul li a:hover i {
    .container {
             max-width: 1400px;
             margin: 0 auto;
-            padding: 0 20px;
         }
 
         /* Hero Section */
         .hero-section {
             /* Increased top padding to compensate for removed header */
-            padding: 80px 0 80px; 
+            padding: 200px 0 80px; 
             text-align: center;
         }
 
@@ -874,6 +873,9 @@ nav ul li a:hover i {
             line-height: 1.5;
         }
 
+        .architecture-section {
+  padding: 60px 0;
+}
         /* Sections */
         .paintings-section, .architecture-section {
             margin-bottom: 80px;
@@ -901,54 +903,53 @@ nav ul li a:hover i {
         }
 
         /* Masonry Grid */
-        .masonry-grid {
-            columns: 3;
-            column-gap: 30px;
-            margin-bottom: 50px;
-        }
+   .architecture-section {
+  padding: 60px 0;
+}
 
-        .masonry-item {
-            break-inside: avoid;
-            margin-bottom: 30px;
-            border-radius: 8px;
-            overflow: hidden;
-            position: relative;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-            background: var(--color-white);
-        }
+.masonry-grid {
+  display: flex;
+  gap: 25px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
 
-        .masonry-item:hover {
-            transform: scale(1.02);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
-        }
+.masonry-item {
+  width: 400px; /* عرض أوسع */
+  border-radius: 14px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.12);
+  transition: transform 0.3s ease;
+}
 
-        .masonry-img {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
+.masonry-item:hover {
+  transform: translateY(-6px);
+}
 
-        .masonry-content {
-            padding: 20px;
-            text-align: center;
-        }
+.masonry-img {
+  width: 100%;
+  height: 260px; /* ارتفاع متناسق مع العرض */
+  object-fit: cover;
+  display: block;
+}
 
-        .masonry-title {
-            font-size: 1.3rem;
-            font-weight: 600;
-            color: var(--color-dark-accent);
-            margin-bottom: 8px;
-        }
+.masonry-content {
+  padding: 18px;
+  text-align: center;
+}
 
-        .masonry-type {
-            font-size: 0.9rem;
-            color: var(--color-coral);
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-        }
-        
+.masonry-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.masonry-type {
+  color: #666;
+  font-size: 1rem;
+}
+
         /* --- Responsive Design --- */
         @media (max-width: 1024px) {
             .hero-title { font-size: 3.5rem; }
@@ -1053,3 +1054,305 @@ footer {
         font-size: 1rem;
     }
 }
+
+
+
+/* About sECTION */
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;600&family=Kalam:wght@400&display=swap' );
+
+        .art-showcase-section {
+            /* Define colors here to be scoped to this component */
+            --showcase-white: #f8f8f8;
+            --showcase-dark-gray: #1f2223;
+            --showcase-primary-green: #13543E;
+            --showcase-light-accent: #2A7F62;
+            --showcase-dark-accent: #0C3B2E;
+            --showcase-frame-bg: #eaf0ee; /* A very light green/gray for the frame */
+
+            font-family: 'Inter', sans-serif;
+            background-color: #fff;
+            color: var(--showcase-dark-gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 5rem 2rem;
+            overflow: hidden;
+        }
+    .art-showcase-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .art-showcase-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            gap: 4rem; /* Increased gap for better separation */
+        }
+
+        /* --- Text Content --- */
+        .art-showcase-text-content {
+            padding-right: 1rem;
+        }
+
+        .art-showcase-subheading {
+            font-family: 'Kalam', cursive;
+            font-size: 1.8rem;
+            color: var(--showcase-dark-gray);
+            margin-bottom: -0.5rem;
+        }
+
+        .art-showcase-main-heading {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3rem, 7vw, 4rem);
+            font-weight: 700;
+            text-transform: uppercase;
+            color: var(--showcase-primary-green);
+            letter-spacing: 3px;
+            line-height: 1.1;
+            margin-bottom: 2rem;
+        }
+
+        .art-showcase-description {
+            font-size: 1rem;
+            line-height: 1.8;
+            color: #5a5a5a;
+            margin-bottom: 2.5rem;
+            max-width: 48ch;
+        }
+
+        .art-showcase-cta-button {
+            display: inline-block;
+            padding: 0.9rem 2.8rem;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-decoration: none;
+            color: var(--showcase-primary-green);
+            background-color: var(--showcase-frame-bg);
+            border: 1px solid var(--showcase-frame-bg);
+            border-radius: 30px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        .art-showcase-cta-button:hover {
+            background-color: var(--showcase-light-accent);
+            color: var(--showcase-white);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(42, 127, 98, 0.2);
+        }
+
+        /* --- Visual Content (Image Layout) --- */
+        .art-showcase-visual-content {
+            position: relative;
+            height: 500px;
+        }
+
+        .art-showcase-image-wrapper {
+            position: absolute;
+            background-color: #fff;
+            box-shadow: 0 15px 35px -10px rgba(0, 0, 0, 0.2);
+            overflow: hidden; /* Ensures image corners are rounded if wrapper is */
+        }
+
+        .art-showcase-image-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* Large image with colored frame */
+        .art-showcase-image-large-frame {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 85%;
+            height: 100%;
+            background-color: var(--showcase-frame-bg);
+            padding: 1.2rem;
+        }
+        
+        .art-showcase-image-large-frame .art-showcase-image-wrapper {
+            width: 100%;
+            height: 100%;
+            position: static;
+            box-shadow: none;
+        }
+
+        /* Smaller image in front */
+        .art-showcase-image-small {
+            bottom: -30px;
+            left: 0;
+            width: 60%; /* Increased size as requested */
+            height: 60%; /* Increased size as requested */
+            border: 10px solid #fff;
+            border-radius: 4px;
+        }
+
+        /* --- Responsive Design --- */
+        @media (max-width: 992px) {
+            .art-showcase-grid {
+                grid-template-columns: 1fr;
+                gap: 4rem;
+            }
+            .art-showcase-text-content {
+                text-align: center;
+                padding-right: 0;
+                order: 2; /* Text comes after images */
+            }
+            .art-showcase-description {
+                margin-left: auto;
+                margin-right: auto;
+            }
+            .art-showcase-visual-content {
+                order: 1;
+                height: 450px;
+                max-width: 500px;
+                margin: 0 auto;
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .art-showcase-section {
+                padding: 4rem 1.5rem;
+            }
+            .art-showcase-visual-content {
+                height: 380px;
+            }
+            .art-showcase-image-small {
+                bottom: -25px;
+                width: 65%;
+            }
+        }
+/* ABOUT SECTION */
+
+
+/* Cta================================================= */
+ .split-image-cta {
+            position: relative;
+            width: 90%;
+            padding: 6rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 10;
+            max-width: 600px;
+            text-align: center;
+            background-color: rgba(26, 26, 26, 0.6);
+            padding: 3rem;
+            border-radius: 4px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(240, 240, 240, 0.1);
+        }
+
+        .cta-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            color: var(--color-white);
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-description {
+            font-size: 1.1rem;
+            color: rgba(240, 240, 240, 0.8);
+            line-height: 1.7;
+            margin-bottom: 2.5rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 3rem;
+            background-color: var(--color-accent-red);
+            color: var(--color-white);
+            border: none;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 10px 30px rgba(230, 57, 70, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 15px 35px rgba(230, 57, 70, 0.3);
+        }
+
+        /* حاوية اللوحات المقسمة */
+        .split-image-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1%;
+            perspective: 1500px; /* لتفعيل التأثير ثلاثي الأبعاد */
+        }
+
+        .image-panel {
+            width: 18%; /* عرض كل لوحة */
+            height: 80%;
+            background: url('images/Architecture/kj.rvt_2018-Jun-04_12-47-02PM-000_3D_View_22_jpeg.jpg' ) no-repeat;
+            background-size: cover;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+            transition: transform 0.8s cubic-bezier(0.165, 0.84, 0.44, 1),
+                        filter 0.5s ease;
+            filter: brightness(0.6);
+        }
+        
+        .split-image-cta:hover .image-panel {
+            filter: brightness(1);
+        }
+
+        /* تحديد موضع الخلفية لكل لوحة لإنشاء الصورة الكاملة */
+        .panel-1 { background-position: 0% 50%; }
+        .panel-2 { background-position: 25% 50%; }
+        .panel-3 { background-position: 50% 50%; }
+        .panel-4 { background-position: 75% 50%; }
+        .panel-5 { background-position: 100% 50%; }
+
+        /* تحديد ارتفاعات مختلفة للوحات مثل الصورة التي أرسلتها */
+        .panel-1, .panel-5 { height: 65%; }
+        .panel-2, .panel-4 { height: 75%; }
+        .panel-3 { height: 80%; }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .split-image-container {
+                gap: 0.5%;
+            }
+            .cta-content {
+                padding: 2rem;
+            }
+            .cta-title {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .split-image-cta {
+                padding: 4rem 1rem;
+            }
+            .image-panel {
+                height: 60% !important; /* توحيد الارتفاع على الموبايل */
+            }
+            .cta-content {
+                width: 90%;
+            }
+        }
+
+        /* Cta================================================= */

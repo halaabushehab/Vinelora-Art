@@ -10,7 +10,7 @@
             --color-white: #f8f8f8;
             --color-dark-gray: #1f2223;
             --color-coral: #13543E; /* Main Green */
-            --color-beige-gold: #dc143c; /* Hover Red - kept as per original */
+            --color-beige-gold: #dc143c; /* Hover Red */
             --color-light-accent: #2A7F62;
             --color-dark-accent: #0C3B2E; /* Darkest Green */
         }
@@ -19,7 +19,7 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Garamond', 'Times New Roman', serif; /* More elegant font */
+            font-family: 'Garamond', 'Times New Roman', serif;
         }
 
         body {
@@ -27,7 +27,7 @@
             color: var(--color-dark-gray);
             display: flex;
             height: 100vh;
-            overflow: hidden; /* Prevent body scroll, allow main content to scroll */
+            overflow: hidden;
         }
 
         /* --- Sidebar --- */
@@ -41,6 +41,7 @@
             flex-direction: column;
             justify-content: space-between;
             z-index: 10;
+            flex-shrink: 0; /* <<< مهم: يمنع الشريط الجانبي من التقلص */
         }
 
         .sidebar-header .logo {
@@ -103,13 +104,14 @@
         .main-content {
             flex-grow: 1;
             height: 100vh;
-            overflow-y: auto; /* Allow this section to scroll */
+            overflow-y: auto;
             padding: 40px;
         }
 
         .gallery-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            /* === التعديل الرئيسي هنا === */
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             gap: 30px;
         }
 
@@ -118,7 +120,7 @@
             overflow: hidden;
             cursor: pointer;
             border-radius: 4px;
-            aspect-ratio: 3 / 4; /* Maintain a consistent aspect ratio */
+            aspect-ratio: 3 / 4;
         }
 
         .gallery-item img {
@@ -165,65 +167,89 @@
             opacity: 1;
         }
 
+        /* --- Lightbox Styles --- */
+        .lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.4s ease, visibility 0.4s ease;
+            padding: 2rem;
+        }
+
+        .lightbox.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .lightbox img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+            border-radius: 4px;
+            transform: scale(0.8);
+            transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        .lightbox.active img {
+            transform: scale(1);
+        }
+
+        .lightbox .close-btn {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            font-size: 2rem;
+            color: var(--color-white);
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .lightbox .close-btn:hover {
+            transform: scale(1.2) rotate(90deg);
+        }
+
         /* Responsive Design */
         @media (max-width: 1200px) {
-            .sidebar {
-                width: 320px;
-                padding: 30px;
-            }
-            .project-info .project-title {
-                font-size: 2rem;
-            }
+            .sidebar { width: 320px; padding: 30px; }
+            .project-info .project-title { font-size: 2rem; }
         }
 
         @media (max-width: 992px) {
-            body {
-                flex-direction: column;
-                height: auto;
-                overflow: auto;
-            }
-            .sidebar {
-                width: 100%;
-                height: auto;
-                border-right: none;
-                border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-                text-align: center;
-            }
-            .project-info {
-                display: none; /* Hide sidebar project info on mobile */
-            }
-            .sidebar-footer {
-                display: none; /* Hide back button on mobile, can be moved to a top nav */
-            }
-            .main-content {
-                height: auto;
-                padding: 30px 20px;
-            }
+            body { flex-direction: column; height: auto; overflow: auto; }
+            .sidebar { width: 100%; height: auto; border-right: none; border-bottom: 1px solid rgba(0, 0, 0, 0.1); text-align: center; }
+            .project-info, .sidebar-footer { display: none; }
+            .main-content { height: auto; padding: 30px 20px; }
         }
         
         @media (max-width: 768px) {
-            .gallery-grid {
-                grid-template-columns: 1fr; /* Single column on mobile */
-            }
+            .gallery-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Sidebar for Branding and Project Details -->
+    <!-- Sidebar -->
     <aside class="sidebar">
         <div class="sidebar-header">
             <a href="#" class="logo">ARCH-ART</a>
             <p class="tagline">Crafting spaces that inspire. Hover over a project to see details.</p>
         </div>
-
         <div id="project-details" class="project-info">
-            <!-- Project details will be dynamically inserted here by JavaScript -->
-            <h2 id="project-title" class="project-title">Modern Sanctuary</h2>
-            <p id="project-category" class="project-category">Residential</p>
-            <p id="project-description" class="project-description">A fusion of minimalist design and natural materials, creating a tranquil living space that connects with its surroundings.</p>
+            <h2 id="project-title">Mountain View Villa</h2>
+            <p id="project-category">Residential</p>
+            <p id="project-description">A minimalist villa with clean lines and large glass windows, designed to frame the stunning mountain landscape.</p>
         </div>
-
         <div class="sidebar-footer">
             <div class="nav-link">
                 <a href="index.html"><i class="fas fa-arrow-left"></i> Back to Home</a>
@@ -231,86 +257,134 @@
         </div>
     </aside>
 
-    <!-- Main Content with Image Gallery -->
+    <!-- Main Content -->
     <main class="main-content">
         <div class="gallery-grid">
-            <!-- Project 1 -->
-            <div class="gallery-item" 
-                 data-title="Modern Sanctuary" 
-                 data-category="Residential" 
-                 data-description="A fusion of minimalist design and natural materials, creating a tranquil living space that connects with its surroundings.">
-                <img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?ixlib=rb-4.0.3&auto=format&fit=crop&w=700&q=80" alt="Modern Sanctuary">
-                <div class="overlay"><h3 class="overlay-title">Modern Sanctuary</h3></div>
+            
+            <!-- All 17 gallery items go here... -->
+            <div class="gallery-item" data-title="Mountain View Villa" data-category="Residential" data-description="A minimalist villa with clean lines and large glass windows, designed to frame the stunning mountain landscape.">
+                 <img src="/images/Architecture/image_2.jpg" alt="Mountain View Villa">
+                <div class="overlay"><h3 class="overlay-title">Mountain View Villa</h3></div>
             </div>
-            <!-- Project 2 -->
-            <div class="gallery-item" 
-                 data-title="Glass Pavilion" 
-                 data-category="Commercial" 
-                 data-description="An iconic commercial space defined by its structural glass walls, blurring the line between interior and exterior.">
-                <img src="https://images.unsplash.com/photo-1487958449943-2429e8be8625?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Glass Pavilion">
-                <div class="overlay"><h3 class="overlay-title">Glass Pavilion</h3></div>
+            <div class="gallery-item" data-title="Urban Plaza & Fountain" data-category="Public Space" data-description="A vibrant public plaza featuring modern architecture, water fountains, and integrated seating areas for community gathering.">
+                 <img src="/images/Architecture/jkj.jpg" alt="Urban Plaza & Fountain">
+                <div class="overlay"><h3 class="overlay-title">Urban Plaza & Fountain</h3></div>
             </div>
-            <!-- Project 3 -->
-            <div class="gallery-item" 
-                 data-title="Eco Residence" 
-                 data-category="Residential" 
-                 data-description="A sustainable home designed with green roofs, solar power, and recycled materials to minimize environmental impact.">
-                <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Eco Residence">
-                <div class="overlay"><h3 class="overlay-title">Eco Residence</h3></div>
+            <div class="gallery-item" data-title="Crimson Accent Apartments" data-category="Residential" data-description="A residential complex characterized by bold crimson accents and a central courtyard with a unique glass fountain.">
+                 <img src="/images/Architecture/kj.rvt_2018-Jun-03_11-38-48PM-000_3D_View_20_jpeg.jpg" alt="Crimson Accent Apartments">
+                <div class="overlay"><h3 class="overlay-title">Crimson Accent Apartments</h3></div>
             </div>
-            <!-- Project 4 -->
-            <div class="gallery-item" 
-                 data-title="Coastal Villa" 
-                 data-category="Residential" 
-                 data-description="This villa offers panoramic ocean views through expansive windows and open-plan living areas, perfect for a seaside escape.">
-                <img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Coastal Villa">
-                <div class="overlay"><h3 class="overlay-title">Coastal Villa</h3></div>
+            <div class="gallery-item" data-title="Community Park & Playground" data-category="Landscape" data-description="A family-friendly park design featuring a children's playground, open green lawns, and pedestrian-friendly pathways.">
+                 <img src="/images/Architecture/kj.rvt_2018-Jun-04_12-47-02PM-000_3D_View_22_jpeg.jpg" alt="Community Park & Playground">
+                <div class="overlay"><h3 class="overlay-title">Community Park & Playground</h3></div>
             </div>
-            <!-- Project 5 -->
-            <div class="gallery-item" 
-                 data-title="Urban Tower" 
-                 data-category="Public Space" 
-                 data-description="A landmark skyscraper that redefines the city skyline with its innovative facade and mixed-use functionality.">
-                <img src="https://images.unsplash.com/photo-1511316672522-c0f091708229?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Urban Tower">
-                <div class="overlay"><h3 class="overlay-title">Urban Tower</h3></div>
+            <div class="gallery-item" data-title="Modern Two-Tone Villa" data-category="Residential" data-description="A contemporary two-story villa featuring a clean, two-tone color scheme and a gated entrance for privacy.">
+                 <img src="/images/Architecture/lkkk.jpg" alt="Modern Two-Tone Villa">
+                <div class="overlay"><h3 class="overlay-title">Modern Two-Tone Villa</h3></div>
             </div>
-            <!-- Project 6 -->
-            <div class="gallery-item" 
-                 data-title="Forest Retreat" 
-                 data-category="Residential" 
-                 data-description="A secluded cabin built with locally sourced timber, designed to be a peaceful retreat immersed in nature.">
-                <img src="https://images.unsplash.com/photo-1499696010180-025ef6e1a8f9?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Forest Retreat">
-                <div class="overlay"><h3 class="overlay-title">Forest Retreat</h3></div>
+            <div class="gallery-item" data-title="Art Deco Inspired Facade" data-category="Residential" data-description="A building facade with strong vertical lines and crimson geometric patterns reminiscent of Art Deco style.">
+                 <img src="/images/Architecture/llk.jpg" alt="Art Deco Inspired Facade">
+                <div class="overlay"><h3 class="overlay-title">Art Deco Inspired Facade</h3></div>
             </div>
+            <div class="gallery-item" data-title="Sprawling Medical Campus" data-category="Healthcare" data-description="An aerial view of a large, modern medical campus or hospital with a curved layout and multiple interconnected buildings.">
+                 <img src="/images/Architecture/m.jpg" alt="Sprawling Medical Campus">
+                <div class="overlay"><h3 class="overlay-title">Sprawling Medical Campus</h3></div>
+            </div>
+            <div class="gallery-item" data-title="Stone & Crimson Villa" data-category="Residential" data-description="A stylish villa combining textured stone walls with bold crimson stripes and multiple balconies for outdoor living.">
+                 <img src="/images/Architecture/mn.jpg" alt="Stone & Crimson Villa">
+                <div class="overlay"><h3 class="overlay-title">Stone & Crimson Villa</h3></div>
+            </div>
+            <div class="gallery-item" data-title="Traditional Courtyard Wall" data-category="Landscape" data-description="A boundary wall design featuring decorative lattice panels that offer privacy while allowing for airflow and light.">
+                 <img src="/images/Architecture/nmnmm.jpg" alt="Traditional Courtyard Wall">
+                <div class="overlay"><h3 class="overlay-title">Traditional Courtyard Wall</h3></div>
+            </div>
+            <div class="gallery-item" data-title="Classic White Residence" data-category="Residential" data-description="An elegant white two-story home with spacious balconies, a tiled entryway, and classic architectural details.">
+                 <img src="/images/Architecture/re.jpg" alt="Classic White Residence">
+                <div class="overlay"><h3 class="overlay-title">Classic White Residence</h3></div>
+            </div>
+            <div class="gallery-item" data-title="Floating House Section" data-category="Conceptual" data-description="An architectural section drawing illustrating a conceptual house that appears to float above a subterranean water feature.">
+                 <img src="/images/Architecture/Scene 1(1).png" alt="Floating House Section">
+                <div class="overlay"><h3 class="overlay-title">Floating House Section</h3></div>
+            </div>
+            <div class="gallery-item" data-title="Sunset Plaza" data-category="Public Space" data-description="A public plaza at dusk, featuring modern buildings, water channels, and ambient lighting that creates a warm, inviting atmosphere.">
+                 <img src="/images/Architecture/Section.jpg" alt="Sunset Plaza">
+                <div class="overlay"><h3 class="overlay-title">Sunset Plaza</h3></div>
+            </div>
+            <div class="gallery-item" data-title="Modern Terrace Villa" data-category="Residential" data-description="A modern villa with large glass sliding doors opening onto a minimalist terrace, perfect for indoor-outdoor living.">
+                 <img src="/images/Architecture/sxs.jpg" alt="Modern Terrace Villa">
+                <div class="overlay"><h3 class="overlay-title">Modern Terrace Villa</h3></div>
+            </div>
+            <div class="gallery-item" data-title="Single-Story Crimson Home" data-category="Residential" data-description="A single-story home featuring a combination of stone and white walls, highlighted by a bold crimson window frame.">
+                 <img src="/images/Architecture/uy.jpg" alt="Single-Story Crimson Home">
+                <div class="overlay"><h3 class="overlay-title">Single-Story Crimson Home</h3></div>
+            </div>
+            <div class="gallery-item" data-title="Textured Stone Entrance" data-category="Residential" data-description="The entrance to a modern home featuring a prominent textured stone wall that contrasts with smooth white and crimson elements.">
+                 <img src="/images/Architecture/vb.jpg" alt="Textured Stone Entrance">
+                <div class="overlay"><h3 class="overlay-title">Textured Stone Entrance</h3></div>
+            </div>
+            <div class="gallery-item" data-title="Courtyard Oasis" data-category="Landscape" data-description="An inviting courtyard with comfortable seating, planters, and a modern building with a geometric facade in the background.">
+                 <img src="/images/Architecture/vc.jpg" alt="Courtyard Oasis">
+                <div class="overlay"><h3 class="overlay-title">Courtyard Oasis</h3></div>
+            </div>
+            <div class="gallery-item" data-title="Floral Entrance" data-category="Landscape" data-description="A welcoming entrance to a modern building, enhanced by vibrant pink flowers and carefully selected landscaping.">
+                 <img src="/images/Architecture/تا.jpg" alt="Floral Entrance">
+                <div class="overlay"><h3 class="overlay-title">Floral Entrance</h3></div>
+            </div>
+
         </div>
     </main>
 
+    <!-- Lightbox HTML -->
+    <div class="lightbox" id="lightbox">
+        <span class="close-btn" id="close-lightbox">&times;</span>
+        <img src="" alt="Enlarged view" id="lightbox-img">
+    </div>
+
     <script>
-        document.addEventListener('DOMContentLoaded', function( ) {
+        document.addEventListener('DOMContentLoaded', function() {
             const galleryItems = document.querySelectorAll('.gallery-item');
             const projectTitleEl = document.getElementById('project-title');
             const projectCategoryEl = document.getElementById('project-category');
             const projectDescriptionEl = document.getElementById('project-description');
             const projectDetailsContainer = document.getElementById('project-details');
 
+            // Sidebar hover effect
             galleryItems.forEach(item => {
                 item.addEventListener('mouseenter', () => {
-                    // Get data from the hovered item
                     const title = item.getAttribute('data-title');
                     const category = item.getAttribute('data-category');
                     const description = item.getAttribute('data-description');
-
-                    // Fade out old text
                     projectDetailsContainer.style.opacity = 0;
-
-                    // After fade out, update text and fade in
                     setTimeout(() => {
                         projectTitleEl.textContent = title;
                         projectCategoryEl.textContent = category;
                         projectDescriptionEl.textContent = description;
                         projectDetailsContainer.style.opacity = 1;
-                    }, 300); // This duration should match the CSS transition
+                    }, 300);
                 });
+            });
+
+            // Lightbox functionality
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            const closeBtn = document.getElementById('close-lightbox');
+
+            galleryItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    const imgSrc = item.querySelector('img').src;
+                    lightboxImg.src = imgSrc;
+                    lightbox.classList.add('active');
+                });
+            });
+
+            closeBtn.addEventListener('click', () => {
+                lightbox.classList.remove('active');
+            });
+
+            lightbox.addEventListener('click', (e) => {
+                if (e.target === lightbox) {
+                    lightbox.classList.remove('active');
+                }
             });
         });
     </script>

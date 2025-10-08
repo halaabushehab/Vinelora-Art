@@ -3,385 +3,190 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vinelora ArtArch - Gallery</title>
+    <title>Art Showcase Section</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap' );
-        
-        :root {
-            --color-white: #f8f8f8;
-            --color-dark-gray: #1f2223;
-            --color-primary-green: #13543E;
-            --color-accent-red: #dc143c;
-            --color-light-accent: #2A7F62;
-            --color-dark-accent: #0C3B2E;
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;600&family=Kalam:wght@400&display=swap' );
 
-        body {
+        .art-showcase-section {
+            /* Define colors here to be scoped to this component */
+            --showcase-white: #f8f8f8;
+            --showcase-dark-gray: #1f2223;
+            --showcase-primary-green: #13543E;
+            --showcase-light-accent: #2A7F62;
+            --showcase-dark-accent: #0C3B2E;
+            --showcase-frame-bg: #eaf0ee; /* A very light green/gray for the frame */
+
             font-family: 'Inter', sans-serif;
-            background: var(--color-white);
-            min-height: 100vh;
-            overflow-x: hidden;
-            color: var(--color-dark-gray);
-        }
-
-        .about-section {
-            position: relative;
-            min-height: 100vh;
+            background-color: #fff;
+            color: var(--showcase-dark-gray);
             display: flex;
             align-items: center;
+            justify-content: center;
+            min-height: 100vh;
             padding: 5rem 2rem;
             overflow: hidden;
         }
 
-        .background-pattern {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            opacity: 0.04;
-            background-image: 
-                radial-gradient(circle at 15% 25%, var(--color-primary-green) 0%, transparent 40%),
-                radial-gradient(circle at 85% 75%, var(--color-light-accent) 0%, transparent 50%),
-                radial-gradient(circle at 50% 50%, var(--color-accent-red) 0%, transparent 25%);
-            animation: subtle-drift 40s ease-in-out infinite;
-        }
-
-        @keyframes subtle-drift {
-            0%, 100% { transform: translate(0, 0) rotate(0deg); }
-            33% { transform: translate(-15px, 20px) rotate(-0.5deg); }
-            66% { transform: translate(15px, -10px) rotate(0.5deg); }
-        }
-
-        .container {
-            max-width: 1400px;
+        .art-showcase-container {
+            max-width: 1100px;
             margin: 0 auto;
             width: 100%;
-            position: relative;
-            z-index: 2;
         }
 
-        .content-grid {
+        .art-showcase-grid {
             display: grid;
-            grid-template-columns: 1.1fr 1fr;
-            gap: 5rem;
+            grid-template-columns: 1fr 1fr;
             align-items: center;
+            gap: 4rem; /* Increased gap for better separation */
         }
 
-        .text-content {
-            position: relative;
-            animation: fadeInLeft 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
-            opacity: 0;
-        }
-        
-        @keyframes fadeInLeft {
-            from { opacity: 0; transform: translateX(-30px); }
-            to { opacity: 1; transform: translateX(0); }
+        /* --- Text Content --- */
+        .art-showcase-text-content {
+            padding-right: 1rem;
         }
 
-        .brand-mark {
-            font-size: 1rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: var(--color-light-accent);
-            margin-bottom: 2rem;
-            position: relative;
+        .art-showcase-subheading {
+            font-family: 'Kalam', cursive;
+            font-size: 1.8rem;
+            color: var(--showcase-dark-gray);
+            margin-bottom: -0.5rem;
         }
 
-        .brand-mark::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 0;
-            width: 50px;
-            height: 2px;
-            background: linear-gradient(90deg, var(--color-primary-green), var(--color-light-accent));
-        }
-
-        .quote-section {
-            margin-bottom: 2.5rem;
-        }
-
-        .quote-text {
+        .art-showcase-main-heading {
             font-family: 'Playfair Display', serif;
-            font-size: 3.5rem;
-            font-weight: 400;
-            line-height: 1.3;
-            color: var(--color-dark-gray);
-            letter-spacing: -0.5px;
-        }
-
-        .highlight-vinelora {
+            font-size: clamp(3rem, 7vw, 4rem);
             font-weight: 700;
-            color: var(--color-primary-green);
-            position: relative;
-            display: inline-block;
-        }
-        
-        .highlight-vinelora::after {
-            content: '';
-            position: absolute;
-            bottom: 5px;
-            left: 0;
-            width: 0%;
-            height: 3px;
-            background: linear-gradient(90deg, var(--color-primary-green), var(--color-light-accent));
-            opacity: 0.7;
-            transition: width 0.8s ease-out;
-            animation: draw-underline 2s 1s forwards;
-        }
-
-        @keyframes draw-underline {
-            to { width: 100%; }
-        }
-
-        .highlight-explore {
-            color: var(--color-accent-red);
-            font-style: italic;
-        }
-
-        .highlight-creativity {
-            color: var(--color-light-accent);
-            font-weight: 700;
-        }
-
-        .description {
-            font-size: 1.1rem;
-            color: rgba(31, 34, 35, 0.75);
-            line-height: 1.9;
-            margin: 2.5rem 0 3.5rem 0;
-            position: relative;
-            padding-left: 2.5rem;
-            border-left: 3px solid;
-            border-image: linear-gradient(180deg, var(--color-primary-green), var(--color-light-accent)) 1;
-        }
-
-        .cta-button {
-            display: inline-flex;
-            align-items: center;
-            gap: 1rem;
-            padding: 1.2rem 2.8rem;
-            font-family: 'Inter', sans-serif;
-            font-size: 1rem;
-            font-weight: 700;
-            text-decoration: none;
-            color: var(--color-white);
-            background: linear-gradient(135deg, var(--color-primary-green), var(--color-dark-accent));
-            border: none;
-            border-radius: 50px; /* Rounded corners */
-            box-shadow: 0 10px 30px rgba(19, 84, 62, 0.2);
-            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
             text-transform: uppercase;
-            letter-spacing: 1px;
-            position: relative;
-            overflow: hidden;
+            color: var(--showcase-primary-green);
+            letter-spacing: 3px;
+            line-height: 1.1;
+            margin-bottom: 2rem;
         }
 
-        .cta-button::before {
-            content: '';
+        .art-showcase-description {
+            font-size: 1rem;
+            line-height: 1.8;
+            color: #5a5a5a;
+            margin-bottom: 2.5rem;
+            max-width: 48ch;
+        }
+
+        .art-showcase-cta-button {
+            display: inline-block;
+            padding: 0.9rem 2.8rem;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-decoration: none;
+            color: var(--showcase-primary-green);
+            background-color: var(--showcase-frame-bg);
+            border: 1px solid var(--showcase-frame-bg);
+            border-radius: 30px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        .art-showcase-cta-button:hover {
+            background-color: var(--showcase-light-accent);
+            color: var(--showcase-white);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(42, 127, 98, 0.2);
+        }
+
+        /* --- Visual Content (Image Layout) --- */
+        .art-showcase-visual-content {
+            position: relative;
+            height: 500px;
+        }
+
+        .art-showcase-image-wrapper {
             position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-            transition: width 0.5s, height 0.5s;
+            background-color: #fff;
+            box-shadow: 0 15px 35px -10px rgba(0, 0, 0, 0.2);
+            overflow: hidden; /* Ensures image corners are rounded if wrapper is */
         }
 
-        .cta-button:hover {
-            transform: translateY(-4px) scale(1.02);
-            box-shadow: 0 18px 45px rgba(19, 84, 62, 0.3);
-        }
-
-        .cta-button:hover::before {
-            width: 250%;
-            height: 250%;
-        }
-
-        .cta-arrow {
-            font-size: 1.5rem;
-            transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-        }
-
-        .cta-button:hover .cta-arrow {
-            transform: translateX(8px);
-        }
-
-        .visual-section {
-            position: relative;
-            height: 600px;
-            animation: fadeInUp 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
-            opacity: 0;
-        }
-        
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .gallery-showcase {
-            position: relative;
+        .art-showcase-image-wrapper img {
             width: 100%;
             height: 100%;
-        }
-
-        .artwork-frame {
-            position: absolute;
-            background: var(--color-white);
-            border-radius: 4px;
-            overflow: hidden;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-            transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
-            border: 1px solid rgba(31, 34, 35, 0.08);
-        }
-
-        .artwork-frame:hover {
-            transform: translateY(-12px) scale(1.03) rotate(var(--hover-rotate, 0deg)) !important;
-            box-shadow: 0 40px 70px -15px rgba(0, 0, 0, 0.3);
-        }
-
-        .frame-1 {
-            width: 60%;
-            height: auto;
-            top: 5%;
-            left: 5%;
-            transform: rotate(-3deg);
-            z-index: 3;
-            --hover-rotate: -1deg;
-        }
-
-        .frame-2 {
-            width: 55%;
-            height: auto;
-            top: 40%;
-            right: -5%;
-            transform: rotate(4deg);
-            z-index: 2;
-            --hover-rotate: 2deg;
-        }
-
-        .frame-3 {
-            width: 45%;
-            height: auto;
-            bottom: 0%;
-            left: -2%;
-            transform: rotate(-5deg);
-            z-index: 1;
-            --hover-rotate: -2deg;
-        }
-
-        .artwork-frame img {
-            width: 100%;
-            height: auto;
-            display: block;
             object-fit: cover;
-            transition: transform 0.6s ease, filter 0.4s ease;
-            filter: saturate(0.5);
+            display: block;
         }
 
-        .artwork-frame:hover img {
-            transform: scale(1.1);
-            filter: saturate(1);
-        }
-
-        /* Responsive Design */
-        @media (max-width: 1200px) {
-            .content-grid {
-                gap: 3rem;
-            }
-            .quote-text {
-                font-size: 3rem;
-            }
-        }
-
-        @media (max-width: 992px) {
-            .about-section {
-                padding: 4rem 1.5rem;
-            }
-            .content-grid {
-                grid-template-columns: 1fr;
-                gap: 4rem;
-                text-align: center;
-            }
-            .text-content {
-                animation-name: fadeInUp; /* Change animation for centered text */
-            }
-            .brand-mark::after {
-                left: 50%;
-                transform: translateX(-50%);
-            }
-            .description {
-                padding-left: 0;
-                border-left: none;
-                padding-bottom: 1.5rem;
-                margin-bottom: 3rem;
-                border-bottom: 2px solid;
-                border-image: linear-gradient(90deg, transparent, var(--color-primary-green), transparent) 1;
-            }
-            .visual-section {
-                margin-top: 2rem;
-                height: 50vh;
-                min-height: 450px;
-            }
-            .cta-button:hover .cta-arrow {
-                transform: translateX(0); /* Disable arrow movement on mobile */
-            }
-        }
-
-        @media (max-width: 768px) {
-            .quote-text {
-                font-size: 2.5rem;
-                line-height: 1.4;
-            }
-            .description {
-                font-size: 1rem;
-            }
-            .cta-button {
-                padding: 1rem 2.5rem;
-            }
-            .visual-section {
-                height: 45vh;
-                min-height: 400px;
-            }
-            .frame-1 { width: 65%; }
-            .frame-2 { width: 60%; top: 35%; }
-            .frame-3 { width: 50%; }
+        /* Large image with colored frame */
+        .art-showcase-image-large-frame {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 85%;
+            height: 100%;
+            background-color: var(--showcase-frame-bg);
+            padding: 1.2rem;
         }
         
+        .art-showcase-image-large-frame .art-showcase-image-wrapper {
+            width: 100%;
+            height: 100%;
+            position: static;
+            box-shadow: none;
+        }
+
+        /* Smaller image in front */
+        .art-showcase-image-small {
+            bottom: -30px;
+            left: 0;
+            width: 60%; /* Increased size as requested */
+            height: 60%; /* Increased size as requested */
+            border: 10px solid #fff;
+            border-radius: 4px;
+        }
+
+        /* --- Responsive Design --- */
+        @media (max-width: 992px) {
+            .art-showcase-grid {
+                grid-template-columns: 1fr;
+                gap: 4rem;
+            }
+            .art-showcase-text-content {
+                text-align: center;
+                padding-right: 0;
+                order: 2; /* Text comes after images */
+            }
+            .art-showcase-description {
+                margin-left: auto;
+                margin-right: auto;
+            }
+            .art-showcase-visual-content {
+                order: 1;
+                height: 450px;
+                max-width: 500px;
+                margin: 0 auto;
+                width: 100%;
+            }
+        }
+
         @media (max-width: 480px) {
-            .about-section {
-                padding: 3rem 1rem;
+            .art-showcase-section {
+                padding: 4rem 1.5rem;
             }
-            .quote-text {
-                font-size: 2rem;
+            .art-showcase-visual-content {
+                height: 380px;
             }
-            .visual-section {
-                height: 40vh;
-                min-height: 350px;
+            .art-showcase-image-small {
+                bottom: -25px;
+                width: 65%;
             }
         }
     </style>
 </head>
 <body>
 
-<section class="about-section" id="about-section">
-    <div class="background-pattern"></div>
-    
-    <div class="container">
-        <div class="content-grid">
-            <!-- Text Section -->
-            <div class="text-content">
-                <div class="brand-mark">Distinguished Gallery</div>
-                
+<section class="art-showcase-section">
+    <div class="art-showcase-container">
+        <div class="art-showcase-grid">
+
+            <div class="art-showcase-text-content">
+                <h3 class="art-showcase-subheading">Distinguished Gallery</h3>
                 <div class="quote-section">
                     <h1 class="quote-text">
                         <span class="highlight-vinelora">Vinelora ArtArch</span> invites you to 
@@ -389,35 +194,25 @@
                         <span class="highlight-creativity">creativity</span> through 
                         timeless paintings, bold architecture, and elegant design.
                     </h1>
-                </div>
-                
-                <p class="description">
-                    Vinelora Art is a prestigious contemporary gallery showcasing the refined works of a 
+                </div>                <p class="art-showcase-description">
+    Vinelora Art is a prestigious contemporary gallery showcasing the refined works of a 
                     distinguished artist. Our curated collection spans exquisite paintings, innovative 
                     architectural projects, and sophisticated design works—all presented within an 
-                    atmosphere of elegance and artistic excellence.
-                </p>
-                
-                <a href="#" class="cta-button">
-                    <span>Explore Gallery</span>
-                    <span class="cta-arrow">→</span>
-                </a>
+                    atmosphere of elegance and artistic excellence.                </p>
+                <a href="#gallery" class="art-showcase-cta-button">Explore Gallery</a>
             </div>
-            
-            <!-- Visual Section -->
-            <div class="visual-section">
-                <div class="gallery-showcase">
-                    <div class="artwork-frame frame-1">
-                        <img src="https://images.unsplash.com/photo-1547891654-e66ed7ebb968?w=400" alt="Contemporary painting showcase" />
-                    </div>
-                    <div class="artwork-frame frame-2">
-                        <img src="https://images.unsplash.com/photo-1501127122-f385ca6ddd9d?w=400" alt="Architectural excellence" />
-                    </div>
-                    <div class="artwork-frame frame-3">
-                        <img src="https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=400" alt="Elegant design exhibition" />
+
+            <div class="art-showcase-visual-content">
+                <div class="art-showcase-image-large-frame">
+                    <div class="art-showcase-image-wrapper">
+                        <img src="/images/Architecture/8ca7be11bbfbc4236b9a4d2f1d5f03c9.jpg" alt="Modern architectural interior with a unique ceiling design.">
                     </div>
                 </div>
+                <div class="art-showcase-image-wrapper art-showcase-image-small">
+                    <img src="/images/painting/IMG_20210912_130546_944.jpg" alt="Colorful abstract painting with rich textures.">
+                </div>
             </div>
+
         </div>
     </div>
 </section>

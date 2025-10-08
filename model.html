@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Architectural Models | Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* --- Root Variables --- */
+        :root {
+            --color-white: #f8f8f8;
+            --color-dark-gray: #1f2223;
+            --color-coral: #13543E;
+            --color-light-accent: #2A7F62;
+            --color-dark-accent: #0C3B2E;
+            --color-beige-bg: #ede7d9;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            background: linear-gradient(135deg, var(--color-white ) 0%, var(--color-beige-bg) 100%);
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* --- Sidebar --- */
+        .sidebar {
+            width: 380px;
+            height: 100%;
+            background-color: var(--color-white);
+            border-right: 1px solid rgba(19, 84, 62, 0.2);
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            z-index: 10;
+            flex-shrink: 0;
+        }
+        .sidebar-header .logo {
+            font-size: 2.2rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--color-coral), var(--color-light-accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-decoration: none;
+            letter-spacing: 2px;
+        }
+        .sidebar-header .tagline {
+            font-size: 1rem;
+            color: var(--color-dark-gray);
+            margin-top: 10px;
+            line-height: 1.5;
+        }
+        .model-info {
+            transition: opacity 0.4s ease;
+        }
+        .model-info .info-title {
+            font-size: 2.5rem;
+            font-weight: 500;
+            color: var(--color-dark-accent);
+            margin-bottom: 10px;
+            line-height: 1.2;
+            font-style: italic;
+        }
+        .model-info .info-category {
+            font-size: 1rem;
+            color: var(--color-coral);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+        .model-info .info-description {
+            font-size: 1rem;
+            color: #555;
+            line-height: 1.7;
+        }
+        .sidebar-footer .nav-link a {
+            color: var(--color-dark-gray);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: all 0.4s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 30px;
+            border: 2px solid var(--color-coral);
+            border-radius: 50px;
+        }
+        .sidebar-footer .nav-link a:hover {
+            color: white;
+            background-color: var(--color-coral);
+        }
+
+        /* --- Main Content --- */
+        .main-content {
+            flex-grow: 1;
+            height: 100vh;
+            overflow-y: auto;
+            padding: 40px;
+        }
+        .gallery-wall {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        /* --- Modern Card Design --- */
+        .model-card {
+            background-color: var(--color-white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            cursor: pointer;
+            position: relative;
+        }
+        .model-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(19, 84, 62, 0.15);
+        }
+        .model-card .image-container {
+            width: 100%;
+            aspect-ratio: 4 / 3;
+            overflow: hidden;
+        }
+        .model-card .model-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        .model-card:hover .model-image {
+            transform: scale(1.05);
+        }
+        .model-card .card-content {
+            padding: 20px;
+            text-align: center;
+        }
+        .model-card .model-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--color-dark-accent);
+            margin-bottom: 8px;
+            font-style: italic;
+        }
+        .model-card .model-material {
+            font-size: 1rem;
+            color: var(--color-coral);
+            font-weight: 500;
+        }
+
+        /* --- Lightbox Styles --- */
+        .lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.4s ease, visibility 0.4s ease;
+            padding: 2rem;
+        }
+        .lightbox.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        .lightbox img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+            border-radius: 4px;
+            transform: scale(0.8);
+            transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+        .lightbox.active img {
+            transform: scale(1);
+        }
+        .lightbox .close-btn {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            font-size: 2rem;
+            color: var(--color-white);
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        .lightbox .close-btn:hover {
+            transform: scale(1.2) rotate(90deg);
+        }
+
+        /* --- Responsive Design --- */
+        @media (max-width: 1200px) {
+            .sidebar { width: 320px; padding: 30px; }
+            .model-info .info-title { font-size: 2rem; }
+        }
+        @media (max-width: 992px) {
+            body { flex-direction: column; height: auto; overflow: auto; }
+            .sidebar { width: 100%; height: auto; border-right: none; border-bottom: 1px solid rgba(19, 84, 62, 0.2); text-align: center; }
+            .model-info { display: none; }
+            .main-content { height: auto; padding: 40px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <a href="#" class="logo">ARCHI-MODELS</a>
+            <p class="tagline">Hover over a model to discover its concept.</p>
+        </div>
+        <div id="model-details-panel" class="model-info">
+            <h2 id="info-title" class="info-title">Linear Complex</h2>
+            <p id="info-category" class="info-category">Foam & Cardboard</p>
+            <p id="info-description" class="info-description">A study model of a linear building complex, exploring terraced levels and a distinctive truss-like facade.</p>
+        </div>
+        <div class="sidebar-footer">
+            <div class="nav-link">
+                <a href="index.html"><i class="fas fa-arrow-left"></i> Back to Home</a>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="gallery-wall" id="gallery-wall">
+            <!-- Models will be dynamically inserted here -->
+        </div>
+    </main>
+
+    <!-- Lightbox HTML -->
+    <div class="lightbox" id="lightbox">
+        <span class="close-btn" id="close-lightbox">&times;</span>
+        <img src="" alt="Enlarged view" id="lightbox-img">
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Corrected and merged list of all models
+            const modelsData = [
+                { title: "Linear Complex", material: "Foam & Cardboard", description: "A study model of a linear building complex, exploring terraced levels and a distinctive truss-like facade.", imageUrl: "/images/Model/SM-G530H296.JPG" },
+                { title: "Community Hub", material: "Cardboard & Mixed Media", description: "A model of a public building featuring a long, central spine connecting various functional blocks, with detailed landscaping.", imageUrl: "/images/Model/SM-G530H298.JPG" },
+                { title: "Crescent Atrium", material: "Cardboard & Wood", description: "This model showcases a large, crescent-shaped building with a central glass atrium and detailed landscaping elements.", imageUrl: "/images/Model/SM-G530H299.JPG" },
+                { title: "Circular Campus", material: "Cardboard & Acrylic", description: "A detailed model of a circular campus building, featuring a prominent central tower and layered, curved facades.", imageUrl: "/images/Model/SM-G530H304.JPG" },
+                { title: "Tiered Crescent Hall", material: "Cardboard", description: "A model focusing on a multi-tiered, crescent-shaped structure, likely a concert hall or theater, with a complex roof design.", imageUrl: "/images/Model/SM-G530H306.JPG" },
+                { title: "Structural Frame Study", material: "Laser-cut Plywood", description: "A detailed structural model of a large hall or atrium, revealing the intricate truss system and framework of the building.", imageUrl: "/images/Model/SM-G530H311.JPG" },
+                { title: "Atrium & Plaza Design", material: "Cardboard", description: "This model highlights the relationship between a curved building's interior atrium and the patterned public plaza outside.", imageUrl: "/images/Model/SM-G530H291.JPG" },
+                { title: "Curved Atrium Model", material: "Cardboard", description: "A detailed model of a building with a sweeping curved facade, focusing on the multi-level atrium and interior space.", imageUrl: "/images/Model/SM-G530H285.JPG" },
+                { title: "Wave Form Study", material: "Layered Cardboard", description: "An abstract study model exploring fluid, wave-like forms and layered construction techniques.", imageUrl: "/images/Model/SM-G530H282.JPG" },
+                { title: "Textured Brick Wall", material: "Clay / Brick", description: "A material study focusing on the texture, pattern, and scale of a large, curved brick wall.", imageUrl: "/images/Model/SM-G530H277.JPG" },
+                { title: "Massing Model", material: "Foam / Acrylic", description: "A conceptual massing model showing the layout and relationship between several building volumes on a site plan.", imageUrl: "/images/Model/IMG_9131.JPG" },
+                { title: "Classical Tower Base", material: "Wood & Mixed Media", description: "A detailed model of the base of a classical or neo-classical tower, showcasing intricate facade details and ornamentation.", imageUrl: "/images/Model/IMG-20160115-WA0002.jpg" },
+                { title: "Tower Facade Detail", material: "Wood & Mixed Media", description: "A close-up view of a tower model, highlighting the detailed craftsmanship of the windows, columns, and facade layers.", imageUrl: "/images/Model/IMG-20160105-WA0003.jpg" },
+                { title: "Gothic Tower Section", material: "Wood & Mixed Media", description: "A sectional model of a tower, revealing the interior structure and ornate details characteristic of Gothic architecture.", imageUrl: "/images/Model/IMG-20160105-WA0002.jpg" },
+                { title: "Twin Towers Podium", material: "Wood & Mixed Media", description: "A model showcasing the relationship between two towers and their shared, multi-level podium base.", imageUrl: "/images/Model/IMG-20160105-WA0001.jpg" },
+                { title: "Twin Towers Complex", material: "Cardboard", description: "A full view of a twin-tower complex model, illustrating its scale and placement on a detailed site plan.", imageUrl: "/images/Model/FILE6499.JPG" },
+                { title: "Podium & Tower Study", material: "3D Print / Resin", description: "A study model focusing on the interaction between a detailed tower structure and its surrounding podium.", imageUrl: "/images/Model/FILE6220.JPG" },
+                { title: "Residential Complex", material: "Mixed Media", description: "A model of a multi-building residential complex, complete with landscaping, pools, and detailed site work.", imageUrl: "/images/Model/FILE6119.JPG" },
+                { title: "Urban Residential Towers", material: "Digital Render", description: "A digital visualization of a modern residential complex, showing the final look with materials, glass, and landscaping.", imageUrl: "/images/Model/FILE1295.JPG" }
+            ];
+
+            const galleryWall = document.getElementById('gallery-wall');
+            const infoTitleEl = document.getElementById('info-title');
+            const infoCategoryEl = document.getElementById('info-category');
+            const infoDescriptionEl = document.getElementById('info-description');
+            const modelDetailsPanel = document.getElementById('model-details-panel');
+
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            const closeBtn = document.getElementById('close-lightbox');
+
+            function renderModels() {
+                if (!galleryWall) return;
+                galleryWall.innerHTML = '';
+
+                modelsData.forEach(model => {
+                    const modelHTML = `
+                        <div class="model-card" 
+                             data-title="${model.title}" 
+                             data-material="${model.material}" 
+                             data-description="${model.description}">
+                            
+                            <div class="image-container">
+                                <img src="${model.imageUrl}" alt="${model.title}" class="model-image">
+                            </div>
+                            
+                            <div class="card-content">
+                                <h4 class="model-title">"${model.title}"</h4>
+                                <span class="model-material">${model.material}</span>
+                            </div>
+                        </div>
+                    `;
+                    galleryWall.innerHTML += modelHTML;
+                });
+            }
+
+            function addEventListeners() {
+                const modelCards = document.querySelectorAll('.model-card');
+                
+                modelCards.forEach(card => {
+                    // Hover effect for sidebar
+                    card.addEventListener('mouseenter', () => {
+                        const title = card.getAttribute('data-title');
+                        const material = card.getAttribute('data-material');
+                        const description = card.getAttribute('data-description');
+
+                        modelDetailsPanel.style.opacity = 0;
+
+                        setTimeout(() => {
+                            infoTitleEl.textContent = title;
+                            infoCategoryEl.textContent = material;
+                            infoDescriptionEl.textContent = description;
+                            modelDetailsPanel.style.opacity = 1;
+                        }, 300);
+                    });
+
+                    // Lightbox click event
+                    card.addEventListener('click', () => {
+                        const imgSrc = card.querySelector('.model-image').src;
+                        lightboxImg.src = imgSrc;
+                        lightbox.classList.add('active');
+                    });
+                });
+
+                // Lightbox close events
+                closeBtn.addEventListener('click', () => {
+                    lightbox.classList.remove('active');
+                });
+
+                lightbox.addEventListener('click', (e) => {
+                    if (e.target === lightbox) {
+                        lightbox.classList.remove('active');
+                    }
+                });
+            }
+
+            // Initial setup
+            renderModels();
+            addEventListeners();
+        });
+    </script>
+
+</body>
+</html>

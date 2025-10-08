@@ -125,4 +125,28 @@ iframe.onload = function () {
   iframe.style.height = iframe.contentWindow.document.body.scrollHeight + "px";
 };
 
-// ==================================
+// cta==================================
+    const panels = document.querySelectorAll('.image-panel');
+        const container = document.querySelector('.split-image-cta');
+
+        container.addEventListener('mousemove', (e) => {
+            const xAxis = (window.innerWidth / 2 - e.clientX) / 25;
+            const yAxis = (window.innerHeight / 2 - e.clientY) / 25;
+
+            panels.forEach((panel, index) => {
+                // كل لوحة تتحرك بشكل مختلف قليلاً لإعطاء عمق
+                const depth = (index - 2) * 5; // اللوحة الوسطى (2) هي نقطة الارتكاز
+                panel.style.transform = `
+                    rotateY(${xAxis}deg) 
+                    rotateX(${-yAxis}deg)
+                    translateZ(${depth}px)
+                `;
+            });
+        });
+
+        // إعادة اللوحات إلى وضعها الطبيعي عند خروج الماوس
+        container.addEventListener('mouseleave', () => {
+            panels.forEach(panel => {
+                panel.style.transform = 'rotateY(0) rotateX(0) translateZ(0)';
+            });
+        });
