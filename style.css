@@ -747,15 +747,16 @@ nav ul li a:hover i {
 
 /* Portfolio===================================================================================================================================== */
 
-   .container {
+ .container {
             max-width: 1400px;
             margin: 0 auto;
+            padding: 0 20px;
         }
 
         /* Hero Section */
         .hero-section {
             /* Increased top padding to compensate for removed header */
-            padding: 200px 0 80px; 
+            padding: 80px 0 80px; 
             text-align: center;
         }
 
@@ -873,9 +874,6 @@ nav ul li a:hover i {
             line-height: 1.5;
         }
 
-        .architecture-section {
-  padding: 60px 0;
-}
         /* Sections */
         .paintings-section, .architecture-section {
             margin-bottom: 80px;
@@ -903,54 +901,73 @@ nav ul li a:hover i {
         }
 
         /* Masonry Grid */
-   .architecture-section {
-  padding: 60px 0;
-}
+        .masonry-grid {
+            columns: 3;
+            column-gap: 30px;
+            margin-bottom: 50px;
+        }
 
-.masonry-grid {
-  display: flex;
-  gap: 25px;
-  justify-content: center;
-  flex-wrap: wrap;
-}
+        .masonry-item {
+            break-inside: avoid;
+            margin-bottom: 30px;
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            background: var(--color-white);
+        }
 
-.masonry-item {
-  width: 400px; /* عرض أوسع */
-  border-radius: 14px;
-  overflow: hidden;
-  background: #fff;
-  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.12);
-  transition: transform 0.3s ease;
-}
+        .masonry-item:hover {
+            transform: scale(1.02);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+        }
 
-.masonry-item:hover {
-  transform: translateY(-6px);
-}
+        .masonry-img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
 
-.masonry-img {
-  width: 100%;
-  height: 260px; /* ارتفاع متناسق مع العرض */
-  object-fit: cover;
-  display: block;
-}
+        .masonry-content {
+            padding: 20px;
+            text-align: center;
+        }
 
-.masonry-content {
-  padding: 18px;
-  text-align: center;
-}
+        .masonry-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--color-dark-accent);
+            margin-bottom: 8px;
+        }
 
-.masonry-title {
-  font-size: 1.2rem;
-  font-weight: 600;
-  margin-bottom: 6px;
-}
-
-.masonry-type {
-  color: #666;
-  font-size: 1rem;
-}
-
+        .masonry-type {
+            font-size: 0.9rem;
+            color: var(--color-coral);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+        
         /* --- Responsive Design --- */
+        @media (max-width: 1024px) {
+            .hero-title { font-size: 3.5rem; }
+            .hero-subtitle { font-size: 1.2rem; }
+            .section-title { font-size: 2.5rem; }
+            .masonry-grid { columns: 2; column-gap: 20px; }
+            .masonry-item { margin-bottom: 20px; }
+        }
+
+        @media (max-width: 768px) {
+            .hero-section { padding: 60px 0; }
+            .hero-title { font-size: 2.8rem; }
+            .hero-subtitle { font-size: 1.1rem; }
+            .section-title { font-size: 2rem; }
+            .portfolio-grid { grid-template-columns: 1fr; gap: 25px; }
+            .portfolio-title { font-size: 1.4rem; }
+            .portfolio-description { font-size: 0.9rem; }
+            .masonry-grid { columns: 1; }
+        }
 /* --- Responsive Design Enhancements with Padding --- */
 
 /* Medium devices (tablets) */
